@@ -15,16 +15,26 @@ enum Era {
 }
 
 model Creature {
-  id          Int               @id @default(autoincrement())
-  name        String            @unique
-  originEra   Era               @default(THIRD_AGE)
-  master      String?
-  threatLevel String
-  description String            @db.Text
-  createdAt   DateTime          @default(now())
+  id                 Int               @id @default(autoincrement())
+  name               String            @unique
+  originEra          Era               @default(THIRD_AGE)
+  master             String?
+  threatLevel        String
+  description        String            @db.Text
+  createdAt          DateTime          @default(now())
 
-  notables    NotableBeast[]
-  habitats    CreatureHabitat[]
+  // Codex / Manuscript Additions
+  taxonomy           String?
+  behavior           String?           @db.Text
+  dangerRating       Int?              @default(1)
+  imageUrl           String?
+  figureCaption      String?
+  pageNumber         Int?
+  totalPages         Int               @default(16)
+  anatomicalSketches Json?             @default("[]")
+
+  notables           NotableBeast[]
+  habitats           CreatureHabitat[]
 
   @@map("creatures")
 }

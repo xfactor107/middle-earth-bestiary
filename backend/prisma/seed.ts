@@ -23,28 +23,56 @@ async function main() {
     create: { name: 'Mirkwood', description: 'Dense, corrupted woodland.' },
   });
 
-  await prisma.creature.upsert({
-    where: { name: 'Balrog' },
-    update: {},
-    create: {
-      name: 'Balrog',
-      originEra: Era.YEARS_OF_THE_TREES,
-      master: 'Morgoth',
-      threatLevel: 'Cataclysmic',
-      description: 'Demonic beings of shadow and flame, corrupted Maiar who joined Morgoth’s rebellion.',
-      notables: {
-        create: [
-          { name: 'Gothmog', title: 'Lord of Balrogs', status: 'Slain' },
-          { name: "Durin's Bane", title: 'Terror of Khazad-dûm', status: 'Slain' },
-        ],
+ // Inside your creature creation/upsert loop:
+await prisma.creature.upsert({
+  where: { name: 'Balrog' },
+  update: {
+    taxonomy: 'Maiar',
+    behavior: 'Solitary, territorial, draws to light and sound',
+    dangerRating: 4,
+    threatLevel: 'Extreme',
+    pageNumber: 1,
+    totalPages: 16,
+    figureCaption: 'Fig. 1 — The Balrog',
+    imageUrl: '/images/balrog-plate.png',
+    anatomicalSketches: [
+      {
+        title: 'Flame whip (detail)',
+        imageUrl: '/images/flame-whip.png',
       },
-      habitats: {
-        create: [
-          { habitatId: angband.id },
-        ],
+      {
+        title: 'Horn structure (front view)',
+        imageUrl: '/images/horn-structure.png',
       },
-    },
-  });
+    ],
+  },
+  create: {
+    name: 'Balrog',
+    originEra: 'FIRST_AGE',
+    master: 'Morgoth',
+    threatLevel: 'Extreme',
+    description:
+      'A fallen Maiar, the Balrog is a being of immense power, wreathed in shadow and flame. It is said to have once served Morgoth.',
+    taxonomy: 'Maiar',
+    behavior: 'Solitary, territorial, draws to light and sound',
+    dangerRating: 4,
+    pageNumber: 1,
+    totalPages: 16,
+    figureCaption: 'Fig. 1 — The Balrog',
+    imageUrl: '/images/balrog-plate.png',
+    anatomicalSketches: [
+      {
+        title: 'Flame whip (detail)',
+        imageUrl: '/images/flame-whip.png',
+      },
+      {
+        title: 'Horn structure (front view)',
+        imageUrl: '/images/horn-structure.png',
+      },
+    ],
+  },
+});
+
 
   await prisma.creature.upsert({
     where: { name: 'Great Spider' },
