@@ -8,7 +8,9 @@ import creatureRouter from "./routes/creatureRoutes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+// Comma-separated allowed origins, e.g. https://bestiary.vercel.app; any origin when unset
+const allowedOrigins = process.env.CORS_ORIGIN?.split(",").map((o) => o.trim());
+app.use(cors({ origin: allowedOrigins ?? true }));
 app.use(express.json());
 
 // API Routes

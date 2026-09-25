@@ -2,8 +2,8 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    // "rootDir": "./src",
-    // "outDir": "./dist",
+    "rootDir": "./src",
+    "outDir": "./dist",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
@@ -17,8 +17,7 @@
 
     // Other Outputs
     "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    "declaration": false,
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
@@ -40,5 +39,7 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  }
+  },
+  // Only the server is compiled; prisma/ scripts run through tsx
+  "include": ["src"]
 }

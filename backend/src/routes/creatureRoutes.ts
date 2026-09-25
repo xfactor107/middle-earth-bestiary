@@ -7,6 +7,7 @@ import {
   deleteCreature,
 } from "../controllers/creatureController.js";
 import { validateRequest } from "../middleware/validate.js";
+import { requireAdmin } from "../middleware/requireAdmin.js";
 import {
   getCreaturesQuerySchema,
   creatureIdParamSchema,
@@ -19,12 +20,12 @@ const router = express.Router();
 router
   .route("/")
   .get(validateRequest(getCreaturesQuerySchema), getCreatures)
-  .post(validateRequest(createCreatureSchema), createCreature);
+  .post(requireAdmin, validateRequest(createCreatureSchema), createCreature);
 
 router
   .route("/:id")
   .get(validateRequest(creatureIdParamSchema), getCreatureById)
-  .put(validateRequest(updateCreatureSchema), updateCreature)
-  .delete(validateRequest(creatureIdParamSchema), deleteCreature);
+  .put(requireAdmin, validateRequest(updateCreatureSchema), updateCreature)
+  .delete(requireAdmin, validateRequest(creatureIdParamSchema), deleteCreature);
 
 export default router;
