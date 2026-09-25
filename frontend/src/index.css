@@ -1,111 +1,87 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --desk: #1a1613;
+  --leather: #2e1c12;
+  --leather-light: #4a2e1c;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --paper: #e2cc9c;
+  --paper-burn: rgba(112, 66, 26, 0.5);
+  --edge-tan: rgba(110, 62, 22, 0.35);
+  --ring-stain: rgba(115, 70, 30, 0.15);
+  --fold-shadow: rgba(70, 40, 16, 0.32);
+  --sheet-1: #dcc79f;
+  --sheet-2: #c9b186;
+  --sheet-3: #b29970;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Iron-gall ink fades from black toward brown with age */
+  --ink: #3a291b;
+  --ink-soft: #624a35;
+  --ink-bleed: rgba(58, 41, 27, 0.35);
+  --rubric: #7c2216;
+  --rule: rgba(92, 60, 34, 0.5);
+  --hatch: rgba(80, 55, 30, 0.22);
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --font-display: "Grenze Gotisch", Georgia, serif;
+  --font-caps: "Almendra SC", Georgia, serif;
+  --font-body: "Almendra", Georgia, serif;
+
+  /* Fine fibre grain and large foxing stains, generated with SVG noise so no texture files are needed */
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .25 0 0 0 0 .13 0 0 0 .3 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  /* Foxing: rust-brown spots where high noise values pass a threshold */
+  --paper-foxing: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.045' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .25 0 0 0 0 .08 0 0 0 16 -11.2'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 .32'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --paper-stains: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .33 0 0 0 0 .15 0 0 0 .55 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");
+
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  min-height: 100vh;
+  background-color: var(--desk);
+  background-image: radial-gradient(ellipse at 50% 30%, #2c241e, var(--desk) 75%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+.desk {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: clamp(16px, 3vw, 48px) clamp(16px, 3vw, 48px);
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--rubric);
+  outline-offset: 3px;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* Shared ornamental rule: cap ◇ — flourish — ◇ cap */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--ink-soft);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.divider__line {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.divider__cap {
+  flex: none;
+  width: 0.6rem;
+}
+
+.divider__flourish {
+  flex: none;
+  width: 2.6rem;
 }

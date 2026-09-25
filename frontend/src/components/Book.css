@@ -1,0 +1,123 @@
+/* The leather cover the two pages rest on */
+.book {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: min(100%, 1500px);
+  /* Fill the viewport height on desktop without spilling below the fold */
+  min-height: min(66vw, 980px, calc(100vh - 2 * clamp(16px, 3vw, 48px)));
+  padding: 10px;
+  border-radius: 8px;
+  background:
+    radial-gradient(ellipse at 50% 40%, var(--leather-light), var(--leather) 70%);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.55),
+    0 8px 18px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 220, 170, 0.08);
+}
+
+/* Shadow pooling in the fold between the pages */
+.book::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: rgba(50, 28, 12, 0.35);
+  pointer-events: none;
+}
+
+.page {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.8rem, 1.4vw, 1.4rem);
+  min-width: 0;
+  padding: clamp(1.25rem, 3vw, 3.2rem);
+  /* Faint bleed so ink looks absorbed into the fibres rather than printed on top */
+  text-shadow: 0 0 1px var(--ink-bleed);
+}
+
+/* Ink multiplies with the paper beneath it, picking up grain and stains */
+.page > * {
+  mix-blend-mode: multiply;
+}
+
+/* The sheet itself: painted on a pseudo-element so its edges can be roughened
+   by the #deckle SVG filter without distorting the text */
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background-color: var(--paper);
+  background-image:
+    var(--fold, none),
+    var(--ring, none),
+    var(--paper-foxing),
+    var(--paper-grain),
+    var(--paper-stains),
+    radial-gradient(ellipse at 50% 45%, transparent 50%, var(--paper-burn) 100%);
+  box-shadow: inset 0 0 2.5rem var(--edge-tan);
+  filter: url(#deckle);
+}
+
+.page--left {
+  --fold: linear-gradient(to left, var(--fold-shadow), transparent 9%);
+  border-radius: 4px 0 0 4px;
+  /* Page edges of the sheets stacked underneath */
+  box-shadow: -2px 2px 0 var(--sheet-1), -4px 4px 0 var(--sheet-2), -6px 5px 0 var(--sheet-3);
+}
+
+.page--right {
+  --fold: linear-gradient(to right, var(--fold-shadow), transparent 9%);
+  /* A cup ring, left by some careless reader */
+  --ring: radial-gradient(
+    circle at 84% 64%,
+    transparent 0 6.6rem,
+    var(--ring-stain) 6.8rem,
+    rgba(115, 70, 30, 0.04) 7.3rem,
+    transparent 7.6rem
+  );
+  border-radius: 0 4px 4px 0;
+  box-shadow: 2px 2px 0 var(--sheet-1), 4px 4px 0 var(--sheet-2), 6px 5px 0 var(--sheet-3);
+}
+
+/* Narrow screens: pages stack as a single column */
+@media (max-width: 960px) {
+  .book {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 6px;
+  }
+
+  .book::after {
+    display: none;
+  }
+
+  .page--left,
+  .page--right {
+    border-radius: 4px;
+    --fold: none;
+    box-shadow: none;
+  }
+
+  .page--left {
+    border-bottom: 1px dashed var(--rule);
+    border-radius: 4px 4px 0 0;
+  }
+
+  .page--right {
+    border-radius: 0 0 4px 4px;
+  }
+}
+
+.book__filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+}

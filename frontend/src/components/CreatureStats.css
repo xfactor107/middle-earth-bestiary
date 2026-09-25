@@ -1,0 +1,32 @@
+.stats {
+  display: grid;
+  gap: 0.7em;
+  margin: 0;
+  font-size: clamp(1rem, 1.3vw, 1.3rem);
+}
+
+.stats__row {
+  display: grid;
+  grid-template-columns: minmax(7.5em, 32%) 1fr;
+  align-items: baseline;
+  gap: 1em;
+}
+
+.stats__row--danger {
+  margin-top: 0.6em;
+}
+
+.stats dt {
+  font-family: var(--font-caps);
+  font-size: 0.8em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rubric);
+}
+
+.stats dd {
+  margin: 0;
+  font-family: var(--font-body);
+  line-height: 1.35;
+  color: var(--ink);
+}

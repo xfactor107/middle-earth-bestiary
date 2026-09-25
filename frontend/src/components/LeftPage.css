@@ -1,0 +1,37 @@
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+  padding-bottom: clamp(0.5rem, 1vw, 1rem);
+  border-bottom: 1px solid var(--rule);
+}
+
+.masthead__compass {
+  flex: none;
+  width: clamp(2.8rem, 4.5vw, 4.8rem);
+  color: var(--ink-soft);
+}
+
+.masthead__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 3.8vw, 4.1rem);
+  line-height: 1;
+  color: var(--rubric);
+}
+
+.left-page__body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(8.5rem, 24%) 1fr;
+  gap: clamp(0.75rem, 1.4vw, 1.5rem);
+  min-height: 0;
+  padding-top: clamp(1rem, 2vw, 2rem);
+}
+
+@media (max-width: 960px) {
+  .left-page__body {
+    grid-template-columns: 1fr;
+  }
+}

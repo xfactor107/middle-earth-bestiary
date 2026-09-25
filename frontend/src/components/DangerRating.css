@@ -1,0 +1,15 @@
+.danger__diamonds {
+  display: flex;
+  gap: 0.35em;
+  color: var(--rubric);
+}
+
+.danger__diamond {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.danger__label {
+  display: block;
+  margin-top: 0.25em;
+}
