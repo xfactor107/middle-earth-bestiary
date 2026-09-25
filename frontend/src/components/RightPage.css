@@ -23,6 +23,14 @@
   color: var(--ink);
 }
 
+/* Pulled up under the name, which the page gap would otherwise push away */
+.entry-lineage {
+  margin: calc(-0.6 * clamp(0.6rem, calc(1.3 * var(--u)), 1.4rem)) 0 0;
+  font-style: italic;
+  font-size: clamp(1rem, calc(1.2 * var(--u)), 1.25rem);
+  color: var(--ink-soft);
+}
+
 .entry-description {
   margin: 0;
   max-width: 34em;
@@ -44,7 +52,7 @@
 
 .page--right .sketches {
   flex: 1 1 0;
-  min-height: 8rem;
+  min-height: 7rem;
 }
 
 .page-turn {

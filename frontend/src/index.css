@@ -32,7 +32,7 @@
 
   /* Fluid unit for anything that stacks vertically: follows viewport width on
      typical screens, but viewport height on short, wide ones (e.g. 1366x768) */
-  --u: min(1vw, 1.7vh);
+  --u: min(1vw, 1.55vh);
 
   color-scheme: light;
 }
