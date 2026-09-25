@@ -2,11 +2,12 @@ import type { ReactNode } from "react";
 import SidebarIndex from "./SidebarIndex";
 import { CompassRose } from "./Ornaments";
 import type { Chapter } from "../data/chapters";
+import type { Category } from "../types/creature";
 import "./LeftPage.css";
 
 interface LeftPageProps {
   chapters: Chapter[];
-  activeChapter: string | null;
+  activeChapter: Category | null;
   // Fills the column beside the sidebar, usually a plate
   children?: ReactNode;
 }

@@ -6,8 +6,8 @@ import StatusSpread from "../components/StatusSpread";
 import type { CreatureListResponse } from "../types/creature";
 import type { CodexContext } from "./codexContext";
 
-// 50 is the API's page-size cap, enough for the whole codex
-const CONTENTS_PATH = "/api/creatures?limit=50&sortBy=pageNumber";
+// Codex order (by chapter, then name); 50 is the API's page-size cap
+const CONTENTS_PATH = "/api/creatures?limit=50&sortBy=category";
 
 // Loads the contents once; every page of the codex reads it from outlet context
 export default function CodexLayout() {

@@ -1,126 +1,47 @@
-import { PrismaClient, Era } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+import { BESTIARY } from './bestiary.js';
 
 const prisma = new PrismaClient();
 
+// Idempotent: every run leaves the database matching bestiary.ts
 async function main() {
   console.log('Seeding Middle-earth Bestiary data...');
 
-  const angband = await prisma.habitat.upsert({
-    where: { name: 'Angband' },
-    update: {},
-    create: { name: 'Angband', description: 'The ancient underground hell-forge of Morgoth.' },
-  });
+  for (const { habitats, notables, ...fields } of BESTIARY) {
+    const creature = await prisma.creature.upsert({
+      where: { name: fields.name },
+      update: fields,
+      create: fields,
+    });
 
-  const mordor = await prisma.habitat.upsert({
-    where: { name: 'Mordor' },
-    update: {},
-    create: { name: 'Mordor', description: 'The volcanic plateau ruled by Sauron.' },
-  });
+    // Ensure each habitat exists, then replace this creature's links to them
+    const habitatIds: number[] = [];
+    for (const habitat of habitats) {
+      const row = await prisma.habitat.upsert({
+        where: { name: habitat.name },
+        update: { description: habitat.description },
+        create: habitat,
+      });
+      habitatIds.push(row.id);
+    }
+    await prisma.creatureHabitat.deleteMany({ where: { creatureId: creature.id } });
+    await prisma.creatureHabitat.createMany({
+      data: habitatIds.map((habitatId) => ({ creatureId: creature.id, habitatId })),
+    });
 
-  const mirkwood = await prisma.habitat.upsert({
-    where: { name: 'Mirkwood' },
-    update: {},
-    create: { name: 'Mirkwood', description: 'Dense, corrupted woodland.' },
-  });
+    for (const notable of notables) {
+      const data = { ...notable, creatureId: creature.id };
+      await prisma.notableBeast.upsert({
+        where: { name: notable.name },
+        update: data,
+        create: data,
+      });
+    }
 
- // Inside your creature creation/upsert loop:
-await prisma.creature.upsert({
-  where: { name: 'Balrog' },
-  update: {
-    taxonomy: 'Maiar',
-    behavior: 'Solitary, territorial, draws to light and sound',
-    dangerRating: 4,
-    threatLevel: 'Extreme',
-    pageNumber: 1,
-    totalPages: 16,
-    figureCaption: 'Fig. 1 — The Balrog',
-    imageUrl: '/images/balrog-plate.png',
-    anatomicalSketches: [
-      {
-        title: 'Flame whip (detail)',
-        imageUrl: '/images/flame-whip.png',
-      },
-      {
-        title: 'Horn structure (front view)',
-        imageUrl: '/images/horn-structure.png',
-      },
-    ],
-  },
-  create: {
-    name: 'Balrog',
-    originEra: 'FIRST_AGE',
-    master: 'Morgoth',
-    threatLevel: 'Extreme',
-    description:
-      'A fallen Maiar, the Balrog is a being of immense power, wreathed in shadow and flame. It is said to have once served Morgoth.',
-    taxonomy: 'Maiar',
-    behavior: 'Solitary, territorial, draws to light and sound',
-    dangerRating: 4,
-    pageNumber: 1,
-    totalPages: 16,
-    figureCaption: 'Fig. 1 — The Balrog',
-    imageUrl: '/images/balrog-plate.png',
-    anatomicalSketches: [
-      {
-        title: 'Flame whip (detail)',
-        imageUrl: '/images/flame-whip.png',
-      },
-      {
-        title: 'Horn structure (front view)',
-        imageUrl: '/images/horn-structure.png',
-      },
-    ],
-  },
-});
+    console.log(`  ✓ ${creature.name}`);
+  }
 
-
-  // Shared by update and create so re-seeding refreshes an existing row
-  const greatSpiderCodex = {
-    originEra: Era.YEARS_OF_THE_TREES,
-    master: null,
-    taxonomy: 'Beasts',
-    behavior: 'Weaves vast webs in dark places, hunts in swarms, shuns light',
-    dangerRating: 3,
-    threatLevel: 'Perilous',
-    description:
-      'Enormous arachnid horrors descended from Ungoliant. They lurk in dark forests and mountain passes, snaring the unwary in webs, and speak in hissing voices.',
-    pageNumber: 2,
-    totalPages: 16,
-    figureCaption: 'Fig. 2 — The Great Spider',
-    imageUrl: '/images/great-spider-plate.png',
-    anatomicalSketches: [
-      {
-        title: 'Spinnerets (detail)',
-        imageUrl: '/images/spider-spinnerets.png',
-      },
-      {
-        title: 'Eye cluster (front view)',
-        imageUrl: '/images/spider-eyes.png',
-      },
-    ],
-  };
-
-  await prisma.creature.upsert({
-    where: { name: 'Great Spider' },
-    update: greatSpiderCodex,
-    create: {
-      name: 'Great Spider',
-      ...greatSpiderCodex,
-      notables: {
-        create: [
-          { name: 'Shelob', title: 'Her Ladyship of Cirith Ungol', status: 'Unknown' },
-        ],
-      },
-      habitats: {
-        create: [
-          { habitatId: mordor.id },
-          { habitatId: mirkwood.id },
-        ],
-      },
-    },
-  });
-
-  console.log('Seeding complete! 🧙‍♂️');
+  console.log(`Seeding complete! ${BESTIARY.length} entries 🧙‍♂️`);
 }
 
 main()

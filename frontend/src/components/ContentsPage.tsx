@@ -1,31 +1,39 @@
 import { Link } from "react-router";
 import { Divider } from "./Ornaments";
-import type { Creature } from "../types/creature";
+import type { Chapter } from "../data/chapters";
 import "./ContentsPage.css";
 
-export default function ContentsPage({ creatures }: { creatures: Creature[] }) {
+const pad = (n: number) => String(n).padStart(2, "0");
+
+export default function ContentsPage({ chapters }: { chapters: Chapter[] }) {
+  const written = chapters.filter((chapter) => chapter.entries.length > 0);
+
   return (
     <section className="page page--right">
       <h1 className="contents__title">Contents</h1>
       <Divider />
 
-      {creatures.length === 0 ? (
+      {written.length === 0 ? (
         <p className="contents__empty">No creatures have yet been set down in this codex.</p>
       ) : (
-        <ol className="contents__list">
-          {creatures.map((creature, i) => (
-            <li key={creature.id}>
-              <Link to={`/creatures/${creature.id}`} className="contents__entry">
-                <span className="contents__name">
-                  {creature.name}
-                  {creature.taxonomy && <em className="contents__taxonomy">{creature.taxonomy}</em>}
-                </span>
-                <span className="contents__leader" aria-hidden="true" />
-                <span className="contents__folio">{String(i + 1).padStart(2, "0")}</span>
-              </Link>
-            </li>
+        <div className="contents__chapters">
+          {written.map((chapter) => (
+            <section key={chapter.category} className="contents__chapter">
+              <h2 className="contents__chapter-title">{chapter.title}</h2>
+              <ol className="contents__list">
+                {chapter.entries.map(({ creature, page }) => (
+                  <li key={creature.id}>
+                    <Link to={`/creatures/${creature.id}`} className="contents__entry">
+                      <span className="contents__name">{creature.name}</span>
+                      <span className="contents__leader" aria-hidden="true" />
+                      <span className="contents__folio">{pad(page)}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </section>
           ))}
-        </ol>
+        </div>
       )}
     </section>
   );

@@ -12,11 +12,32 @@
   font-size: clamp(1.05rem, 1.45vw, 1.5rem);
 }
 
+/* Chapters flow down two columns and are never split across them */
+.contents__chapters {
+  columns: 2;
+  column-gap: clamp(1.25rem, 3vw, 3rem);
+  font-size: clamp(1rem, calc(1.25 * var(--u)), 1.35rem);
+}
+
+.contents__chapter {
+  break-inside: avoid;
+  padding-bottom: clamp(0.5rem, calc(1.1 * var(--u)), 1.1rem);
+}
+
+.contents__chapter-title {
+  margin: 0 0 0.15em;
+  font-family: var(--font-caps);
+  font-weight: 400;
+  font-size: 0.8em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rubric);
+}
+
 .contents__list {
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: clamp(1.1rem, 1.5vw, 1.55rem);
 }
 
 /* Name ........ folio, with a dotted leader filling the gap */
@@ -24,19 +45,13 @@
   display: flex;
   align-items: baseline;
   gap: 0.5em;
-  padding: 0.45em 0;
+  padding: clamp(0.15em, calc(0.25 * var(--u)), 0.3em) 0;
   color: var(--ink);
   text-decoration: none;
 }
 
 .contents__entry:hover .contents__name {
   color: var(--rubric);
-}
-
-.contents__taxonomy {
-  margin-left: 0.6em;
-  font-size: 0.75em;
-  color: var(--ink-soft);
 }
 
 .contents__leader {
@@ -46,4 +61,10 @@
 
 .contents__folio {
   font-variant-numeric: oldstyle-nums;
+}
+
+@media (max-width: 480px) {
+  .contents__chapters {
+    columns: 1;
+  }
 }

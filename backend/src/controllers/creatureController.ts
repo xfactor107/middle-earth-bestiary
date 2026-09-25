@@ -23,10 +23,10 @@ export const getCreatures = async (req: Request, res: Response, next: NextFuncti
     const {
       search,
       habitat,
+      category,
       originEra,
       taxonomy,
       dangerRating,
-      threatLevel,
       page,
       limit,
       sortBy,
@@ -34,6 +34,12 @@ export const getCreatures = async (req: Request, res: Response, next: NextFuncti
     } = req.query as unknown as GetCreaturesQuery;
 
     const skip = (page - 1) * limit;
+    const direction = order.toLowerCase() as Prisma.SortOrder;
+    // Codex order breaks ties within a chapter by name
+    const orderBy: Prisma.CreatureOrderByWithRelationInput[] =
+      sortBy === "category"
+        ? [{ category: direction }, { name: "asc" }]
+        : [{ [sortBy]: direction }];
 
     const where: Prisma.CreatureWhereInput = {
       ...(search && {
@@ -42,12 +48,10 @@ export const getCreatures = async (req: Request, res: Response, next: NextFuncti
           { description: { contains: search, mode: "insensitive" } },
         ],
       }),
+      ...(category && { category: { equals: category } }),
       ...(originEra && { originEra: { equals: originEra } }),
       ...(taxonomy && { taxonomy: { equals: taxonomy, mode: "insensitive" } }),
       ...(dangerRating && { dangerRating: { equals: dangerRating } }),
-      ...(threatLevel && {
-        threatLevel: { equals: threatLevel, mode: "insensitive" },
-      }),
       ...(habitat && {
         habitats: {
           some: {
@@ -65,7 +69,7 @@ export const getCreatures = async (req: Request, res: Response, next: NextFuncti
         where,
         take: limit,
         skip,
-        orderBy: { [sortBy]: order.toLowerCase() as Prisma.SortOrder },
+        orderBy,
         include: creatureInclude,
       }),
     ]);

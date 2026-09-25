@@ -14,12 +14,23 @@ enum Era {
   THIRD_AGE
 }
 
+// Chapters of the codex, in reading order (Postgres sorts enums by declaration)
+enum Category {
+  MAIAR
+  ORCS
+  TROLLS
+  BEASTS
+  DRAGONS
+  ENTS
+  BIRDS
+}
+
 model Creature {
   id                 Int               @id @default(autoincrement())
   name               String            @unique
+  category           Category
   originEra          Era               @default(THIRD_AGE)
   master             String?
-  threatLevel        String
   description        String            @db.Text
   createdAt          DateTime          @default(now())
 
@@ -29,8 +40,6 @@ model Creature {
   dangerRating       Int?              @default(1)
   imageUrl           String?
   figureCaption      String?
-  pageNumber         Int?
-  totalPages         Int               @default(16)
   anatomicalSketches Json?             @default("[]")
 
   notables           NotableBeast[]

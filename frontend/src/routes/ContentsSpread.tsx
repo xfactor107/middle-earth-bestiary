@@ -5,7 +5,7 @@ import ContentsPage from "../components/ContentsPage";
 import { useCodex } from "./codexContext";
 
 export default function ContentsSpread() {
-  const { creatures, chapters } = useCodex();
+  const { chapters } = useCodex();
 
   return (
     <Book label="Contents of the bestiary">
@@ -13,7 +13,7 @@ export default function ContentsSpread() {
       <LeftPage chapters={chapters} activeChapter={null}>
         <MainIllustration name="Frontispiece" imageUrl="/images/frontispiece.png" caption="Frontispiece" />
       </LeftPage>
-      <ContentsPage creatures={creatures} />
+      <ContentsPage chapters={chapters} />
     </Book>
   );
 }

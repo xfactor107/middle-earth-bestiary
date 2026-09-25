@@ -1,19 +1,30 @@
-import type { Creature } from "../types/creature";
+import type { Category, Creature } from "../types/creature";
 
-// Placeholder chapters until creatures carry a category of their own;
-// for now a creature belongs to the chapter matching its taxonomy
-const CHAPTER_NAMES = ["Maiar", "Orcs", "Beasts", "Ents", "Dragons", "Great Eagles"];
+// Chapter titles, in the same order as the Category enum (and so the codex)
+const CHAPTER_TITLES: Record<Category, string> = {
+  MAIAR: "Maiar",
+  ORCS: "Orcs",
+  TROLLS: "Trolls",
+  BEASTS: "Beasts",
+  DRAGONS: "Dragons",
+  ENTS: "Ents",
+  BIRDS: "Birds",
+};
 
 export interface Chapter {
-  name: string;
-  // First entry in the chapter, or null when the codex has none yet
-  firstCreatureId: number | null;
+  category: Category;
+  title: string;
+  // Entries in codex order, each with its page number
+  entries: Array<{ creature: Creature; page: number }>;
 }
 
+// Groups the codex (already in chapter order) into its chapters
 export function buildChapters(creatures: Creature[]): Chapter[] {
-  return CHAPTER_NAMES.map((name) => ({
-    name,
-    firstCreatureId:
-      creatures.find((c) => c.taxonomy?.toLowerCase() === name.toLowerCase())?.id ?? null,
+  return (Object.keys(CHAPTER_TITLES) as Category[]).map((category) => ({
+    category,
+    title: CHAPTER_TITLES[category],
+    entries: creatures
+      .map((creature, i) => ({ creature, page: i + 1 }))
+      .filter(({ creature }) => creature.category === category),
   }));
 }

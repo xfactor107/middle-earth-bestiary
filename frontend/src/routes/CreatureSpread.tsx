@@ -13,7 +13,13 @@ import { useCodex } from "./codexContext";
 // Minimum horizontal travel, in px, for a touch to count as a page turn
 const SWIPE_DISTANCE = 60;
 
-const toLink =(c: Creature | undefined): PageLink | null => (c ? { id: c.id, name: c.name } : null);
+// Figures are numbered by the entry's page, e.g. "Fig. 3 — The Orc"
+function figureCaption(creature: Creature, page: number | null): string {
+  const caption = creature.figureCaption ?? `The ${creature.name}`;
+  return page != null ? `Fig. ${page} — ${caption}` : caption;
+}
+
+const toLink = (c: Creature | undefined): PageLink | null => (c ? { id: c.id, name: c.name } : null);
 
 export default function CreatureSpread() {
   const { id = "" } = useParams();
@@ -67,6 +73,8 @@ export default function CreatureSpread() {
     };
   }, [prev, next, navigate]);
 
+  const pageNumber = index >= 0 ? index + 1 : null;
+
   // The contents already hold every entry, so show that copy at once
   // and swap in the fresh detail when it arrives
   const creature = detail.status === "success" ? detail.data : creatures[index];
@@ -97,16 +105,16 @@ export default function CreatureSpread() {
   return (
     <Book label={`Bestiary entry: ${creature.name}`}>
       <title>{`${creature.name} · Tolkien Bestiary`}</title>
-      <LeftPage chapters={chapters} activeChapter={creature.taxonomy}>
+      <LeftPage chapters={chapters} activeChapter={creature.category}>
         <MainIllustration
           name={creature.name}
           imageUrl={creature.imageUrl}
-          caption={creature.figureCaption}
+          caption={figureCaption(creature, pageNumber)}
         />
       </LeftPage>
       <RightPage
         creature={creature}
-        pageNumber={index >= 0 ? index + 1 : null}
+        pageNumber={pageNumber}
         totalPages={creatures.length}
         prev={prev}
         next={next}

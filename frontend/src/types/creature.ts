@@ -2,6 +2,8 @@
 
 export type Era = "YEARS_OF_THE_TREES" | "FIRST_AGE" | "SECOND_AGE" | "THIRD_AGE";
 
+export type Category = "MAIAR" | "ORCS" | "TROLLS" | "BEASTS" | "DRAGONS" | "ENTS" | "BIRDS";
+
 export interface AnatomicalSketch {
   title: string;
   imageUrl: string;
@@ -30,9 +32,9 @@ export interface NotableBeast {
 export interface Creature {
   id: number;
   name: string;
+  category: Category;
   originEra: Era;
   master: string | null;
-  threatLevel: string;
   description: string;
   createdAt: string;
   taxonomy: string | null;
@@ -40,8 +42,6 @@ export interface Creature {
   dangerRating: number | null;
   imageUrl: string | null;
   figureCaption: string | null;
-  pageNumber: number | null;
-  totalPages: number;
   anatomicalSketches: AnatomicalSketch[];
   habitats: CreatureHabitat[];
   notables: NotableBeast[];

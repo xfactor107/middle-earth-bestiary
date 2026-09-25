@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+const categorySchema = z.enum(["MAIAR", "ORCS", "TROLLS", "BEASTS", "DRAGONS", "ENTS", "BIRDS"]);
+
 const anatomicalSketchSchema = z.object({
   title: z.string().trim().min(1, "Sketch title is required"),
   imageUrl: z.string().trim().min(1, "Sketch image URL is required"),
@@ -9,15 +11,16 @@ export const getCreaturesQuerySchema = z.object({
   query: z.object({
     search: z.string().trim().optional(),
     habitat: z.string().trim().optional(),
+    category: categorySchema.optional(),
     originEra: z
       .enum(["YEARS_OF_THE_TREES", "FIRST_AGE", "SECOND_AGE", "THIRD_AGE"])
       .optional(),
     taxonomy: z.string().trim().optional(),
     dangerRating: z.coerce.number().int().min(1).max(5).optional(),
-    threatLevel: z.string().trim().optional(),
     page: z.coerce.number().int().positive().default(1),
     limit: z.coerce.number().int().positive().max(50).default(10),
-    sortBy: z.enum(["name", "dangerRating", "createdAt", "pageNumber"]).default("pageNumber"),
+    // "category" is codex order: by chapter, then name
+    sortBy: z.enum(["category", "name", "dangerRating", "createdAt"]).default("category"),
     order: z.enum(["asc", "desc", "ASC", "DESC"]).default("asc"),
   }),
 });
@@ -31,11 +34,11 @@ export const creatureIdParamSchema = z.object({
 export const createCreatureSchema = z.object({
   body: z.object({
     name: z.string().trim().min(2, "Name must be at least 2 characters long"),
+    category: categorySchema,
     originEra: z
       .enum(["YEARS_OF_THE_TREES", "FIRST_AGE", "SECOND_AGE", "THIRD_AGE"])
       .default("THIRD_AGE"),
     master: z.string().trim().optional().nullable(),
-    threatLevel: z.string().trim().min(1, "Threat level label is required"),
     description: z.string().trim().min(10, "Description must be at least 10 characters"),
 
     // Codex / Manuscript Additions
@@ -44,8 +47,6 @@ export const createCreatureSchema = z.object({
     dangerRating: z.coerce.number().int().min(1).max(5).default(1),
     imageUrl: z.string().trim().optional().nullable(),
     figureCaption: z.string().trim().optional().nullable(),
-    pageNumber: z.coerce.number().int().positive().optional().nullable(),
-    totalPages: z.coerce.number().int().positive().default(16),
     anatomicalSketches: z.array(anatomicalSketchSchema).optional().default([]),
   }),
 });

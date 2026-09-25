@@ -1,11 +1,12 @@
 import { Link } from "react-router";
 import { TreeEmblem } from "./Ornaments";
 import type { Chapter } from "../data/chapters";
+import type { Category } from "../types/creature";
 import "./SidebarIndex.css";
 
 interface SidebarIndexProps {
   chapters: Chapter[];
-  activeChapter: string | null;
+  activeChapter: Category | null;
 }
 
 export default function SidebarIndex({ chapters, activeChapter }: SidebarIndexProps) {
@@ -17,25 +18,26 @@ export default function SidebarIndex({ chapters, activeChapter }: SidebarIndexPr
 
       <ol className="sidebar__chapters">
         {chapters.map((chapter, i) => {
-          const isActive = chapter.name.toLowerCase() === activeChapter?.toLowerCase();
+          const isActive = chapter.category === activeChapter;
+          const first = chapter.entries[0]?.creature;
           const num = <span className="sidebar__num">{String(i + 1).padStart(2, "0")}</span>;
 
           return (
-            <li key={chapter.name}>
-              {chapter.firstCreatureId == null ? (
+            <li key={chapter.category}>
+              {!first ? (
                 // No entries written for this chapter yet
                 <span className="sidebar__chapter is-empty">
                   {num}
-                  {chapter.name}
+                  {chapter.title}
                 </span>
               ) : (
                 <Link
-                  to={`/creatures/${chapter.firstCreatureId}`}
+                  to={`/creatures/${first.id}`}
                   className={`sidebar__chapter${isActive ? " is-active" : ""}`}
                   aria-current={isActive ? "true" : undefined}
                 >
                   {num}
-                  {chapter.name}
+                  {chapter.title}
                 </Link>
               )}
             </li>
