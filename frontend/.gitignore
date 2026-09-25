@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Full-size artwork; only the optimized copies in public/images are committed
+art-originals/

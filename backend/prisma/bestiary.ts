@@ -87,10 +87,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'A fallen Maia, the Balrog is a being of immense power, wreathed in shadow and flame. It is said to have once served Morgoth.',
     figureCaption: 'The Balrog',
-    imageUrl: '/images/balrog-plate.png',
+    imageUrl: '/images/balrog-plate.webp',
     anatomicalSketches: [
-      { title: 'Flame whip (detail)', imageUrl: '/images/flame-whip.png' },
-      { title: 'Horn structure (front view)', imageUrl: '/images/horn-structure.png' },
+      { title: 'Flame whip (detail)', imageUrl: '/images/flame-whip.webp' },
+      { title: 'Horn structure (front view)', imageUrl: '/images/horn-structure.webp' },
     ],
     habitats: [HABITATS.angband, HABITATS.khazadDum],
     notables: [
@@ -109,10 +109,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'Wolves inhabited by dreadful spirits that Sauron imprisoned in their shapes. They held Tol-in-Gaurhoth for him, where they devoured the companions of Finrod Felagund in the dark.',
     figureCaption: 'The Werewolf',
-    imageUrl: '/images/werewolf-plate.png',
+    imageUrl: '/images/werewolf-plate.webp',
     anatomicalSketches: [
-      { title: 'Jaw and fangs (detail)', imageUrl: '/images/werewolf-jaw.png' },
-      { title: 'Forepaw (underside)', imageUrl: '/images/werewolf-paw.png' },
+      { title: 'Jaw and fangs (detail)', imageUrl: '/images/werewolf-jaw.webp' },
+      { title: 'Forepaw (underside)', imageUrl: '/images/werewolf-paw.webp' },
     ],
     habitats: [HABITATS.tolInGaurhoth, HABITATS.angband],
     notables: [
@@ -133,10 +133,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'Bred by Morgoth in mockery of the Elves, Orcs are cruel, cunning and numerous. They hate the Sun and all things fair, and serve whatever dark power masters them.',
     figureCaption: 'The Orc',
-    imageUrl: '/images/orc-plate.png',
+    imageUrl: '/images/orc-plate.webp',
     anatomicalSketches: [
-      { title: 'Scimitar (detail)', imageUrl: '/images/orc-scimitar.png' },
-      { title: 'Helm of Mordor (side view)', imageUrl: '/images/orc-helm.png' },
+      { title: 'Scimitar (detail)', imageUrl: '/images/orc-scimitar.webp' },
+      { title: 'Helm of Mordor (side view)', imageUrl: '/images/orc-helm.webp' },
     ],
     habitats: [HABITATS.mistyMountains, HABITATS.khazadDum, HABITATS.mordor],
     notables: [
@@ -157,10 +157,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'Great soldier-orcs, black and swart, that do not weaken under the Sun. Those of Isengard bore the White Hand of Saruman and made up the host that assailed Helm’s Deep.',
     figureCaption: 'The Uruk-hai',
-    imageUrl: '/images/uruk-hai-plate.png',
+    imageUrl: '/images/uruk-hai-plate.webp',
     anatomicalSketches: [
-      { title: 'Shield of the White Hand', imageUrl: '/images/uruk-shield.png' },
-      { title: 'Short broad-bladed sword', imageUrl: '/images/uruk-sword.png' },
+      { title: 'Shield of the White Hand', imageUrl: '/images/uruk-shield.webp' },
+      { title: 'Short broad-bladed sword', imageUrl: '/images/uruk-sword.webp' },
     ],
     habitats: [HABITATS.isengard, HABITATS.mordor],
     notables: [{ name: 'Uglúk', title: 'Captain of the Isengarders', status: 'Slain' }],
@@ -178,10 +178,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'Great brutish creatures made by Morgoth in the Elder Days, said to be counterfeits of the Ents. Sunlight turns them back to the stone from which they were made.',
     figureCaption: 'The Stone-troll',
-    imageUrl: '/images/stone-troll-plate.png',
+    imageUrl: '/images/stone-troll-plate.webp',
     anatomicalSketches: [
-      { title: 'Hand (scale with a hobbit)', imageUrl: '/images/troll-hand.png' },
-      { title: 'Petrified hide (detail)', imageUrl: '/images/troll-hide.png' },
+      { title: 'Hand (scale with a hobbit)', imageUrl: '/images/troll-hand.webp' },
+      { title: 'Petrified hide (detail)', imageUrl: '/images/troll-hide.webp' },
     ],
     habitats: [HABITATS.trollshaws, HABITATS.mistyMountains],
     notables: [
@@ -201,10 +201,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'A strong race of trolls bred by Sauron late in the Third Age. Unlike their kin they can endure the Sun while his will holds them, and they came against the Black Gate with great hammers.',
     figureCaption: 'The Olog-hai',
-    imageUrl: '/images/olog-hai-plate.png',
+    imageUrl: '/images/olog-hai-plate.webp',
     anatomicalSketches: [
-      { title: 'War-hammer (detail)', imageUrl: '/images/olog-hammer.png' },
-      { title: 'Scaled hide (detail)', imageUrl: '/images/olog-hide.png' },
+      { title: 'War-hammer (detail)', imageUrl: '/images/olog-hammer.webp' },
+      { title: 'Scaled hide (detail)', imageUrl: '/images/olog-hide.webp' },
     ],
     habitats: [HABITATS.mordor],
     notables: [],
@@ -222,10 +222,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'Enormous arachnid horrors descended from Ungoliant. They lurk in dark forests and mountain passes, snaring the unwary in webs, and speak in hissing voices.',
     figureCaption: 'The Great Spider',
-    imageUrl: '/images/great-spider-plate.png',
+    imageUrl: '/images/great-spider-plate.webp',
     anatomicalSketches: [
-      { title: 'Spinnerets (detail)', imageUrl: '/images/spider-spinnerets.png' },
-      { title: 'Eye cluster (front view)', imageUrl: '/images/spider-eyes.png' },
+      { title: 'Spinnerets (detail)', imageUrl: '/images/spider-spinnerets.webp' },
+      { title: 'Eye cluster (front view)', imageUrl: '/images/spider-eyes.webp' },
     ],
     habitats: [HABITATS.mordor, HABITATS.mirkwood],
     notables: [{ name: 'Shelob', title: 'Her Ladyship of Cirith Ungol', status: 'Unknown' }],
@@ -241,10 +241,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'Evil wolves of the lands beyond the Great River. They gather in packs by night, speak in a dreadful tongue of their own, and serve as mounts for Orcs in war.',
     figureCaption: 'The Warg',
-    imageUrl: '/images/warg-plate.png',
+    imageUrl: '/images/warg-plate.webp',
     anatomicalSketches: [
-      { title: 'Skull (side view)', imageUrl: '/images/warg-skull.png' },
-      { title: 'Tracks in snow', imageUrl: '/images/warg-tracks.png' },
+      { title: 'Skull (side view)', imageUrl: '/images/warg-skull.webp' },
+      { title: 'Tracks in snow', imageUrl: '/images/warg-tracks.webp' },
     ],
     habitats: [HABITATS.wilderland, HABITATS.mistyMountains],
     notables: [],
@@ -260,10 +260,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'A naked winged creature out of an older world, nurtured by Sauron on fell meats until it grew beyond the measure of all other things that fly. The Nazgûl rode them once their black horses were lost.',
     figureCaption: 'The Fell Beast',
-    imageUrl: '/images/fell-beast-plate.png',
+    imageUrl: '/images/fell-beast-plate.webp',
     anatomicalSketches: [
-      { title: 'Wing membrane (detail)', imageUrl: '/images/fell-beast-wing.png' },
-      { title: 'Talon (detail)', imageUrl: '/images/fell-beast-talon.png' },
+      { title: 'Wing membrane (detail)', imageUrl: '/images/fell-beast-wing.webp' },
+      { title: 'Talon (detail)', imageUrl: '/images/fell-beast-talon.webp' },
     ],
     habitats: [HABITATS.mordor],
     notables: [
@@ -281,10 +281,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'Enormous grey beasts of the South, tusked and trunked, bearing towers of war upon their backs. The Haradrim drove them against Gondor on the Pelennor Fields, where no horse would face them.',
     figureCaption: 'The Oliphaunt',
-    imageUrl: '/images/oliphaunt-plate.png',
+    imageUrl: '/images/oliphaunt-plate.webp',
     anatomicalSketches: [
-      { title: 'Tusk (detail)', imageUrl: '/images/oliphaunt-tusk.png' },
-      { title: 'War-tower (rigging)', imageUrl: '/images/oliphaunt-tower.png' },
+      { title: 'Tusk (detail)', imageUrl: '/images/oliphaunt-tusk.webp' },
+      { title: 'War-tower (rigging)', imageUrl: '/images/oliphaunt-tower.webp' },
     ],
     habitats: [HABITATS.harad],
     notables: [],
@@ -300,10 +300,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'A many-armed creature that lurked in the dark pool before the West-gate of Moria. When the Fellowship passed the doors it seized Frodo, then tore the gates shut behind them.',
     figureCaption: 'The Watcher in the Water',
-    imageUrl: '/images/watcher-plate.png',
+    imageUrl: '/images/watcher-plate.webp',
     anatomicalSketches: [
-      { title: 'Tentacle (underside)', imageUrl: '/images/watcher-tentacle.png' },
-      { title: 'The West-gate of Moria', imageUrl: '/images/watcher-west-gate.png' },
+      { title: 'Tentacle (underside)', imageUrl: '/images/watcher-tentacle.webp' },
+      { title: 'The West-gate of Moria', imageUrl: '/images/watcher-west-gate.webp' },
     ],
     habitats: [HABITATS.khazadDum],
     notables: [],
@@ -321,10 +321,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'Great worms bred by Morgoth in Angband, breathing fire and lusting after gold. Their eyes could bind the will, and their cunning speech was more dangerous than their flame.',
     figureCaption: 'The Fire-drake',
-    imageUrl: '/images/fire-drake-plate.png',
+    imageUrl: '/images/fire-drake-plate.webp',
     anatomicalSketches: [
-      { title: 'Scale armour (detail)', imageUrl: '/images/fire-drake-scales.png' },
-      { title: 'Bare patch of the breast', imageUrl: '/images/fire-drake-breast.png' },
+      { title: 'Scale armour (detail)', imageUrl: '/images/fire-drake-scales.webp' },
+      { title: 'Bare patch of the breast', imageUrl: '/images/fire-drake-breast.webp' },
     ],
     habitats: [HABITATS.angband, HABITATS.erebor],
     notables: [
@@ -344,10 +344,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'Dragons of the Grey Mountains that breathe no fire, yet are strong and ruthless with fang and claw. They warred upon the Dwarves of the North and drove them from their halls.',
     figureCaption: 'The Cold-drake',
-    imageUrl: '/images/cold-drake-plate.png',
+    imageUrl: '/images/cold-drake-plate.webp',
     anatomicalSketches: [
-      { title: 'Claw (detail)', imageUrl: '/images/cold-drake-claw.png' },
-      { title: 'Coiled form (top view)', imageUrl: '/images/cold-drake-coil.png' },
+      { title: 'Claw (detail)', imageUrl: '/images/cold-drake-claw.webp' },
+      { title: 'Coiled form (top view)', imageUrl: '/images/cold-drake-coil.webp' },
     ],
     habitats: [HABITATS.greyMountains],
     notables: [{ name: 'Scatha', title: 'The Worm', status: 'Slain' }],
@@ -365,10 +365,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'Tree-herds who awoke when the Elves awoke, and learned speech from them. Slow and patient, they tend the forests, but roused to wrath they break stone; they overthrew Isengard in a single night.',
     figureCaption: 'The Ent',
-    imageUrl: '/images/ent-plate.png',
+    imageUrl: '/images/ent-plate.webp',
     anatomicalSketches: [
-      { title: 'Bark-skin (detail)', imageUrl: '/images/ent-bark.png' },
-      { title: 'Eyes (front view)', imageUrl: '/images/ent-eyes.png' },
+      { title: 'Bark-skin (detail)', imageUrl: '/images/ent-bark.webp' },
+      { title: 'Eyes (front view)', imageUrl: '/images/ent-eyes.webp' },
     ],
     habitats: [HABITATS.fangorn],
     notables: [
@@ -387,10 +387,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'Trees that have grown almost Ent-like, or Ents grown tree-ish, dark and wild. They stand silent until roused, then move under shadow; after Helm’s Deep they fell upon the fleeing Orcs, and none came out again.',
     figureCaption: 'The Huorn',
-    imageUrl: '/images/huorn-plate.png',
+    imageUrl: '/images/huorn-plate.webp',
     anatomicalSketches: [
-      { title: 'Grasping roots (detail)', imageUrl: '/images/huorn-roots.png' },
-      { title: 'Grove at dusk', imageUrl: '/images/huorn-grove.png' },
+      { title: 'Grasping roots (detail)', imageUrl: '/images/huorn-roots.webp' },
+      { title: 'Grove at dusk', imageUrl: '/images/huorn-grove.webp' },
     ],
     habitats: [HABITATS.fangorn, HABITATS.oldForest],
     notables: [{ name: 'Old Man Willow', title: 'Heart of the Old Forest', status: 'Unknown' }],
@@ -408,10 +408,10 @@ export const BESTIARY: BestiaryEntry[] = [
     description:
       'Great eagles sent by Manwë to watch over Middle-earth. They bore Beren and Lúthien out of peril, came to the Battle of Five Armies, and carried Frodo and Sam from the ruin of Mount Doom.',
     figureCaption: 'The Great Eagle',
-    imageUrl: '/images/great-eagle-plate.png',
+    imageUrl: '/images/great-eagle-plate.webp',
     anatomicalSketches: [
-      { title: 'Primary feather (detail)', imageUrl: '/images/eagle-feather.png' },
-      { title: 'Talons (detail)', imageUrl: '/images/eagle-talons.png' },
+      { title: 'Primary feather (detail)', imageUrl: '/images/eagle-feather.webp' },
+      { title: 'Talons (detail)', imageUrl: '/images/eagle-talons.webp' },
     ],
     habitats: [HABITATS.crissaegrim, HABITATS.mistyMountains],
     notables: [
