@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useApi } from "../api/useApi";
 import { ApiError } from "../api/client";
@@ -10,7 +10,10 @@ import StatusSpread from "../components/StatusSpread";
 import type { Creature } from "../types/creature";
 import { useCodex } from "./codexContext";
 
-const toLink = (c: Creature | undefined): PageLink | null => (c ? { id: c.id, name: c.name } : null);
+// Minimum horizontal travel, in px, for a touch to count as a page turn
+const SWIPE_DISTANCE = 60;
+
+const toLink =(c: Creature | undefined): PageLink | null => (c ? { id: c.id, name: c.name } : null);
 
 export default function CreatureSpread() {
   const { id = "" } = useParams();
@@ -19,18 +22,49 @@ export default function CreatureSpread() {
   const detail = useApi<Creature>(`/api/creatures/${encodeURIComponent(id)}`);
 
   const index = creatures.findIndex((c) => String(c.id) === id);
-  const prev = toLink(creatures[index - 1]);
-  const next = toLink(index >= 0 ? creatures[index + 1] : undefined);
+  // Memoized so the input listeners below are not re-registered mid-swipe
+  const prev = useMemo(() => toLink(creatures[index - 1]), [creatures, index]);
+  const next = useMemo(
+    () => toLink(index >= 0 ? creatures[index + 1] : undefined),
+    [creatures, index],
+  );
 
-  // Arrow keys turn the page
+  // Arrow keys and horizontal swipes turn the page
   useEffect(() => {
+    const turn = (to: PageLink | null) => {
+      if (to) navigate(`/creatures/${to.id}`);
+    };
+
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
-      if (e.key === "ArrowLeft" && prev) navigate(`/creatures/${prev.id}`);
-      if (e.key === "ArrowRight" && next) navigate(`/creatures/${next.id}`);
+      if (e.key === "ArrowLeft") turn(prev);
+      if (e.key === "ArrowRight") turn(next);
     };
+
+    let start: { x: number; y: number } | null = null;
+    const onTouchStart = (e: TouchEvent) => {
+      const t = e.touches[0];
+      start = e.touches.length === 1 && t ? { x: t.clientX, y: t.clientY } : null;
+    };
+    const onTouchEnd = (e: TouchEvent) => {
+      const t = e.changedTouches[0];
+      if (!start || !t) return;
+      const dx = t.clientX - start.x;
+      const dy = t.clientY - start.y;
+      start = null;
+      // A deliberate sideways stroke, not a vertical scroll
+      if (Math.abs(dx) < SWIPE_DISTANCE || Math.abs(dy) > Math.abs(dx) / 2) return;
+      turn(dx > 0 ? prev : next);
+    };
+
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
   }, [prev, next, navigate]);
 
   // The contents already hold every entry, so show that copy at once

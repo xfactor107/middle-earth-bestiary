@@ -1,8 +1,8 @@
 .stats {
   display: grid;
-  gap: 0.7em;
+  gap: clamp(0.35em, calc(0.6 * var(--u)), 0.7em);
   margin: 0;
-  font-size: clamp(1rem, 1.3vw, 1.3rem);
+  font-size: clamp(1rem, calc(1.25 * var(--u)), 1.3rem);
 }
 
 .stats__row {
@@ -29,4 +29,12 @@
   font-family: var(--font-body);
   line-height: 1.35;
   color: var(--ink);
+}
+
+/* Phones: labels sit above their values */
+@media (max-width: 480px) {
+  .stats__row {
+    grid-template-columns: 1fr;
+    gap: 0.1em;
+  }
 }

@@ -5,7 +5,7 @@
   grid-template-columns: 1fr 1fr;
   width: min(100%, 1500px);
   /* Fill the viewport height on desktop without spilling below the fold */
-  min-height: min(66vw, 980px, calc(100vh - 2 * clamp(16px, 3vw, 48px)));
+  min-height: min(66vw, 980px, calc(100vh - 2 * clamp(12px, 2.5vh, 40px)));
   padding: 10px;
   border-radius: 8px;
   background:
@@ -34,9 +34,9 @@
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  gap: clamp(0.8rem, 1.4vw, 1.4rem);
+  gap: clamp(0.6rem, calc(1.3 * var(--u)), 1.4rem);
   min-width: 0;
-  padding: clamp(1.25rem, 3vw, 3.2rem);
+  padding: clamp(1.25rem, calc(2.8 * var(--u)), 3.2rem) clamp(1.25rem, 3vw, 3.2rem);
   /* Faint bleed so ink looks absorbed into the fibres rather than printed on top */
   text-shadow: 0 0 1px var(--ink-bleed);
 }

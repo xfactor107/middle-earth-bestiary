@@ -30,6 +30,10 @@
   --paper-foxing: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.045' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .25 0 0 0 0 .08 0 0 0 16 -11.2'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 .32'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
   --paper-stains: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .33 0 0 0 0 .15 0 0 0 .55 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");
 
+  /* Fluid unit for anything that stacks vertically: follows viewport width on
+     typical screens, but viewport height on short, wide ones (e.g. 1366x768) */
+  --u: min(1vw, 1.7vh);
+
   color-scheme: light;
 }
 
@@ -53,7 +57,7 @@ body {
   display: grid;
   place-items: center;
   min-height: 100vh;
-  padding: clamp(16px, 3vw, 48px) clamp(16px, 3vw, 48px);
+  padding: clamp(12px, 2.5vh, 40px) clamp(16px, 3vw, 48px);
 }
 
 a:focus-visible,

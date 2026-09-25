@@ -9,7 +9,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(2.8rem, 5.6vw, 6rem);
+  font-size: clamp(2.6rem, calc(5.4 * var(--u)), 6rem);
   line-height: 1;
   color: var(--rubric);
 }
@@ -27,7 +27,7 @@
   margin: 0;
   max-width: 34em;
   font-family: var(--font-body);
-  font-size: clamp(1.05rem, 1.45vw, 1.5rem);
+  font-size: clamp(1.05rem, calc(1.4 * var(--u)), 1.5rem);
   line-height: 1.6;
   color: var(--ink);
 }
@@ -43,7 +43,8 @@
 }
 
 .page--right .sketches {
-  flex: 1;
+  flex: 1 1 0;
+  min-height: 8rem;
 }
 
 .page-turn {
@@ -66,4 +67,16 @@
 
 .page-turn__link--next {
   margin-left: auto;
+}
+
+@media (max-width: 960px) {
+  .page--right .sketches {
+    flex: none;
+    min-height: 0;
+  }
+
+  /* Comfortable thumb targets */
+  .page-turn__link {
+    padding: 0.6em 0;
+  }
 }

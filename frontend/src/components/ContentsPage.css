@@ -2,7 +2,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(2.8rem, 5.6vw, 6rem);
+  font-size: clamp(2.6rem, calc(5.4 * var(--u)), 6rem);
   line-height: 1;
   color: var(--rubric);
 }

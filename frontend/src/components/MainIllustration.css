@@ -9,7 +9,7 @@
 .plate__frame {
   position: relative;
   flex: 1;
-  min-height: 18rem;
+  min-height: 12rem;
   padding: clamp(0.6rem, 1.1vw, 1.1rem);
   border: 1.5px solid var(--ink-soft);
   outline: 1px solid var(--rule);
@@ -33,6 +33,16 @@
 .plate__corner--tr { top: -1px; right: -1px; transform: rotate(90deg); }
 .plate__corner--br { bottom: -1px; right: -1px; transform: rotate(180deg); }
 .plate__corner--bl { bottom: -1px; left: -1px; transform: rotate(270deg); }
+
+/* Stacked pages: keep the plate portrait, and short enough to see whole */
+@media (max-width: 960px) {
+  .plate__frame {
+    flex: none;
+    width: min(100%, calc(68vh * 3 / 4));
+    aspect-ratio: 3 / 4;
+    margin-inline: auto;
+  }
+}
 
 .plate__caption {
   padding-top: 0.8em;
