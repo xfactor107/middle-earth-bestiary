@@ -74,15 +74,38 @@ await prisma.creature.upsert({
 });
 
 
+  // Shared by update and create so re-seeding refreshes an existing row
+  const greatSpiderCodex = {
+    originEra: Era.YEARS_OF_THE_TREES,
+    master: null,
+    taxonomy: 'Beasts',
+    behavior: 'Weaves vast webs in dark places, hunts in swarms, shuns light',
+    dangerRating: 3,
+    threatLevel: 'Perilous',
+    description:
+      'Enormous arachnid horrors descended from Ungoliant. They lurk in dark forests and mountain passes, snaring the unwary in webs, and speak in hissing voices.',
+    pageNumber: 2,
+    totalPages: 16,
+    figureCaption: 'Fig. 2 — The Great Spider',
+    imageUrl: '/images/great-spider-plate.png',
+    anatomicalSketches: [
+      {
+        title: 'Spinnerets (detail)',
+        imageUrl: '/images/spider-spinnerets.png',
+      },
+      {
+        title: 'Eye cluster (front view)',
+        imageUrl: '/images/spider-eyes.png',
+      },
+    ],
+  };
+
   await prisma.creature.upsert({
     where: { name: 'Great Spider' },
-    update: {},
+    update: greatSpiderCodex,
     create: {
       name: 'Great Spider',
-      originEra: Era.YEARS_OF_THE_TREES,
-      master: null,
-      threatLevel: 'Lethal',
-      description: 'Enormous arachnid horrors descended from Ungoliant.',
+      ...greatSpiderCodex,
       notables: {
         create: [
           { name: 'Shelob', title: 'Her Ladyship of Cirith Ungol', status: 'Unknown' },
