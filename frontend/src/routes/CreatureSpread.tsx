@@ -77,6 +77,16 @@ export default function CreatureSpread() {
 
   const pageNumber = index >= 0 ? index + 1 : null;
 
+  // Fetch the neighbouring entries' art in the background, so a page turn
+  // lands on finished illustrations rather than empty frames
+  useEffect(() => {
+    for (const neighbour of [creatures[index - 1], creatures[index + 1]]) {
+      if (!neighbour) continue;
+      const urls = [neighbour.imageUrl, ...neighbour.anatomicalSketches.map((s) => s.imageUrl)];
+      for (const url of urls) if (url) new Image().src = url;
+    }
+  }, [creatures, index]);
+
   // The contents already hold every entry, so show that copy at once
   // and swap in the fresh detail when it arrives
   const creature = detail.status === "success" ? detail.data : creatures[index];
