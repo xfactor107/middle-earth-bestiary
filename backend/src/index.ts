@@ -8,8 +8,9 @@ import creatureRouter from "./routes/creatureRoutes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Comma-separated allowed origins, e.g. https://bestiary.vercel.app; any origin when unset
-const allowedOrigins = process.env.CORS_ORIGIN?.split(",").map((o) => o.trim());
+// Comma-separated allowed origins, e.g. https://bestiary.vercel.app; any origin when unset.
+// Trailing slashes are dropped because browsers send the Origin header without one.
+const allowedOrigins = process.env.CORS_ORIGIN?.split(",").map((o) => o.trim().replace(/\/+$/, ""));
 app.use(cors({ origin: allowedOrigins ?? true }));
 app.use(express.json());
 
