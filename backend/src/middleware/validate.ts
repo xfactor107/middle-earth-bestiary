@@ -4,15 +4,24 @@ import { ZodError, type ZodType } from "zod";
 export const validateRequest = (schema: ZodType) => {
   return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const parsed = await schema.parseAsync({
+      const parsed = (await schema.parseAsync({
         body: req.body,
         query: req.query,
         params: req.params,
-      });
+      })) as { body?: unknown; query?: unknown; params?: unknown };
 
-      req.body = (parsed as { body?: unknown }).body;
-      req.query = (parsed as { query?: unknown }).query as Request["query"];
-      req.params = (parsed as { params?: unknown }).params as Request["params"];
+      // Only replace the parts this schema validated; the rest stay untouched
+      if ("body" in parsed) req.body = parsed.body;
+      if ("params" in parsed) req.params = parsed.params as Request["params"];
+      // Express 5 exposes req.query as a read-only getter, so redefine it instead of assigning
+      if ("query" in parsed) {
+        Object.defineProperty(req, "query", {
+          value: parsed.query,
+          writable: true,
+          enumerable: true,
+          configurable: true,
+        });
+      }
 
       next();
     } catch (error) {

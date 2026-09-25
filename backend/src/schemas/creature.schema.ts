@@ -7,12 +7,14 @@ const anatomicalSketchSchema = z.object({
 
 export const getCreaturesQuerySchema = z.object({
   query: z.object({
+    search: z.string().trim().optional(),
     habitat: z.string().trim().optional(),
     originEra: z
       .enum(["YEARS_OF_THE_TREES", "FIRST_AGE", "SECOND_AGE", "THIRD_AGE"])
       .optional(),
     taxonomy: z.string().trim().optional(),
     dangerRating: z.coerce.number().int().min(1).max(5).optional(),
+    threatLevel: z.string().trim().optional(),
     page: z.coerce.number().int().positive().default(1),
     limit: z.coerce.number().int().positive().max(50).default(10),
     sortBy: z.enum(["name", "dangerRating", "createdAt", "pageNumber"]).default("pageNumber"),
