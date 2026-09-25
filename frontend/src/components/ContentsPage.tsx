@@ -1,19 +1,16 @@
-import { useSearchParams } from "react-router";
+import { useRef } from "react";
 import TurnLink from "./TurnLink";
 import { Divider } from "./Ornaments";
 import { matchesQuery } from "../data/search";
+import { useSearchQuery } from "../routes/useSearchQuery";
 import type { Chapter } from "../data/chapters";
 import "./ContentsPage.css";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
 export default function ContentsPage({ chapters }: { chapters: Chapter[] }) {
-  // The query lives in the URL (?q=) so searches can be shared and undone with Back
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("q") ?? "";
-
-  const setQuery = (value: string) =>
-    setSearchParams(value ? { q: value } : {}, { replace: true });
+  const [query, setQuery] = useSearchQuery();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Entries keep their page numbers even when others are filtered out
   const results = chapters
@@ -37,6 +34,7 @@ export default function ContentsPage({ chapters }: { chapters: Chapter[] }) {
             Seek
           </label>
           <input
+            ref={inputRef}
             id="codex-search"
             type="search"
             className="contents__search-input"
@@ -47,6 +45,19 @@ export default function ContentsPage({ chapters }: { chapters: Chapter[] }) {
             autoComplete="off"
             spellCheck={false}
           />
+          {query && (
+            <button
+              type="button"
+              className="contents__search-clear"
+              aria-label="Clear search"
+              onClick={() => {
+                setQuery("");
+                inputRef.current?.focus();
+              }}
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          )}
         </div>
       )}
 

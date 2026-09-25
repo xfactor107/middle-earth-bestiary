@@ -49,6 +49,29 @@
   opacity: 0.7;
 }
 
+/* Replaced by our own labelled clear button */
+.contents__search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+.contents__search-clear {
+  align-self: center;
+  padding: 0 0.3em;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 1.2em;
+  line-height: 1;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.contents__search-clear:hover {
+  color: var(--rubric);
+}
+
 .contents__search-input:focus {
   outline: none;
   border-bottom-color: var(--rubric);

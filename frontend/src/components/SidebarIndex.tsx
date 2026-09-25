@@ -1,3 +1,4 @@
+import { useLocation } from "react-router";
 import TurnLink from "./TurnLink";
 import { TreeEmblem } from "./Ornaments";
 import type { Chapter } from "../data/chapters";
@@ -12,11 +13,16 @@ interface SidebarIndexProps {
 }
 
 export default function SidebarIndex({ chapters, activeChapter, currentPage = null }: SidebarIndexProps) {
+  // No link back to the index while already on it
+  const onIndex = useLocation().pathname === "/";
+
   return (
     <nav className="sidebar" aria-label="Bestiary chapters">
-      <TurnLink to="/" direction="back" className="sidebar__back">
-        <span aria-hidden="true">‹</span> Back to Index
-      </TurnLink>
+      {!onIndex && (
+        <TurnLink to="/" direction="back" className="sidebar__back">
+          <span aria-hidden="true">‹</span> Back to Index
+        </TurnLink>
+      )}
 
       {/* Status pages have no chapters yet; skip the list so its rules don't show */}
       {chapters.length > 0 && (
