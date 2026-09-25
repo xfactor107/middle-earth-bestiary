@@ -1,0 +1,49 @@
+.contents__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.8rem, 5.6vw, 6rem);
+  line-height: 1;
+  color: var(--rubric);
+}
+
+.contents__empty {
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.45vw, 1.5rem);
+}
+
+.contents__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: clamp(1.1rem, 1.5vw, 1.55rem);
+}
+
+/* Name ........ folio, with a dotted leader filling the gap */
+.contents__entry {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  padding: 0.45em 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.contents__entry:hover .contents__name {
+  color: var(--rubric);
+}
+
+.contents__taxonomy {
+  margin-left: 0.6em;
+  font-size: 0.75em;
+  color: var(--ink-soft);
+}
+
+.contents__leader {
+  flex: 1;
+  border-bottom: 2px dotted var(--rule);
+}
+
+.contents__folio {
+  font-variant-numeric: oldstyle-nums;
+}

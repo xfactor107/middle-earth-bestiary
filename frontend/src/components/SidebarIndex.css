@@ -14,7 +14,7 @@
   font: inherit;
   font-size: clamp(0.9rem, 1.05vw, 1.1rem);
   color: var(--ink);
-  cursor: pointer;
+  text-decoration: none;
 }
 
 .sidebar__back:hover {
@@ -38,7 +38,11 @@
   text-decoration: none;
 }
 
-.sidebar__chapter:hover {
+.sidebar__chapter.is-empty {
+  opacity: 0.5;
+}
+
+a.sidebar__chapter:hover {
   color: var(--rubric);
 }
 

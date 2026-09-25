@@ -46,3 +46,16 @@ export interface Creature {
   habitats: CreatureHabitat[];
   notables: NotableBeast[];
 }
+
+// GET /api/creatures
+export interface CreatureListResponse {
+  data: Creature[];
+  pagination: {
+    totalItems: number;
+    totalPages: number;
+    currentPage: number;
+    limit: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+  };
+}

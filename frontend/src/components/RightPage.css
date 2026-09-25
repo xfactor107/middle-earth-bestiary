@@ -45,3 +45,25 @@
 .page--right .sketches {
   flex: 1;
 }
+
+.page-turn {
+  display: flex;
+  /* Always rests at the foot of the page */
+  margin-top: auto;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+}
+
+.page-turn__link {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.page-turn__link:hover {
+  color: var(--rubric);
+}
+
+.page-turn__link--next {
+  margin-left: auto;
+}

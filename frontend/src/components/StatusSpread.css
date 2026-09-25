@@ -1,0 +1,21 @@
+.status__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 4vw, 4.2rem);
+  line-height: 1.05;
+  color: var(--rubric);
+}
+
+.status__message {
+  margin: 0;
+  max-width: 30em;
+  font-size: clamp(1.05rem, 1.45vw, 1.5rem);
+  line-height: 1.6;
+}
+
+.status__link {
+  align-self: flex-start;
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  color: var(--rubric);
+}

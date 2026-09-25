@@ -1,11 +1,28 @@
-import Book from "./components/Book";
-import { balrogFixture } from "./data/balrogFixture";
+import { Route, Routes } from "react-router";
+import CodexLayout from "./routes/CodexLayout";
+import ContentsSpread from "./routes/ContentsSpread";
+import CreatureSpread from "./routes/CreatureSpread";
+import StatusSpread from "./components/StatusSpread";
 
-// Static spread: the Balrog is hardcoded until routing and API fetches land
 export default function App() {
   return (
     <main className="desk">
-      <Book creature={balrogFixture} pageNumber={1} totalPages={16} />
+      <Routes>
+        <Route element={<CodexLayout />}>
+          <Route index element={<ContentsSpread />} />
+          <Route path="creatures/:id" element={<CreatureSpread />} />
+        </Route>
+        <Route
+          path="*"
+          element={
+            <StatusSpread
+              title="This page is lost"
+              message="There is no such page in this codex."
+              showIndexLink
+            />
+          }
+        />
+      </Routes>
     </main>
   );
 }

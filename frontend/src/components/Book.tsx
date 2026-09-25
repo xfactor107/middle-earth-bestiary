@@ -1,17 +1,15 @@
-import LeftPage from "./LeftPage";
-import RightPage from "./RightPage";
-import type { Creature } from "../types/creature";
+import type { ReactNode } from "react";
 import "./Book.css";
 
 interface BookProps {
-  creature: Creature;
-  pageNumber: number;
-  totalPages: number;
+  label: string;
+  children: ReactNode;
 }
 
-export default function Book({ creature, pageNumber, totalPages }: BookProps) {
+// The open codex; each route supplies its own left and right pages
+export default function Book({ label, children }: BookProps) {
   return (
-    <article className="book" aria-label={`Bestiary entry: ${creature.name}`}>
+    <article className="book" aria-label={label}>
       {/* Referenced by .page::before to give the sheets rough, hand-cut edges */}
       <svg className="book__filters" aria-hidden="true">
         <filter id="deckle">
@@ -20,8 +18,7 @@ export default function Book({ creature, pageNumber, totalPages }: BookProps) {
         </filter>
       </svg>
 
-      <LeftPage creature={creature} />
-      <RightPage creature={creature} pageNumber={pageNumber} totalPages={totalPages} />
+      {children}
     </article>
   );
 }

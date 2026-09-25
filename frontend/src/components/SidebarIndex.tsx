@@ -1,33 +1,43 @@
+import { Link } from "react-router";
 import { TreeEmblem } from "./Ornaments";
+import type { Chapter } from "../data/chapters";
 import "./SidebarIndex.css";
 
-// Placeholder chapters until creatures carry a category of their own
-const CHAPTERS = ["Maiar", "Orcs", "Beasts", "Ents", "Dragons", "Great Eagles"];
-
 interface SidebarIndexProps {
+  chapters: Chapter[];
   activeChapter: string | null;
 }
 
-export default function SidebarIndex({ activeChapter }: SidebarIndexProps) {
+export default function SidebarIndex({ chapters, activeChapter }: SidebarIndexProps) {
   return (
     <nav className="sidebar" aria-label="Bestiary chapters">
-      <button type="button" className="sidebar__back">
+      <Link to="/" className="sidebar__back">
         <span aria-hidden="true">‹</span> Back to Index
-      </button>
+      </Link>
 
       <ol className="sidebar__chapters">
-        {CHAPTERS.map((chapter, i) => {
-          const isActive = chapter === activeChapter;
+        {chapters.map((chapter, i) => {
+          const isActive = chapter.name.toLowerCase() === activeChapter?.toLowerCase();
+          const num = <span className="sidebar__num">{String(i + 1).padStart(2, "0")}</span>;
+
           return (
-            <li key={chapter}>
-              <a
-                href="#"
-                className={`sidebar__chapter${isActive ? " is-active" : ""}`}
-                aria-current={isActive ? "page" : undefined}
-              >
-                <span className="sidebar__num">{String(i + 1).padStart(2, "0")}</span>
-                {chapter}
-              </a>
+            <li key={chapter.name}>
+              {chapter.firstCreatureId == null ? (
+                // No entries written for this chapter yet
+                <span className="sidebar__chapter is-empty">
+                  {num}
+                  {chapter.name}
+                </span>
+              ) : (
+                <Link
+                  to={`/creatures/${chapter.firstCreatureId}`}
+                  className={`sidebar__chapter${isActive ? " is-active" : ""}`}
+                  aria-current={isActive ? "true" : undefined}
+                >
+                  {num}
+                  {chapter.name}
+                </Link>
+              )}
             </li>
           );
         })}
