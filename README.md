@@ -1,5 +1,7 @@
 # 🗡️ Tolkien Bestiary
 
+[![Tests](https://github.com/xfactor107/middle-earth-bestiary/actions/workflows/test.yml/badge.svg)](https://github.com/xfactor107/middle-earth-bestiary/actions/workflows/test.yml)
+
 An illustrated codex of the creatures of Middle-earth, presented as an aged manuscript that a scholar like Gandalf might have studied. Turn its pages to read of Balrogs, dragons, Ents and the other beasts of Tolkien's legendarium.
 
 ![The Balrog's entry in the Tolkien Bestiary](docs/screenshot.webp)
@@ -114,6 +116,19 @@ The default sort is codex order: by chapter, then by name. A creature's page num
 curl "http://localhost:3000/api/creatures?category=DRAGONS"
 curl -X DELETE -H "x-api-key: $ADMIN_API_KEY" http://localhost:3000/api/creatures/42
 ```
+
+---
+
+## 🧪 Testing
+
+Both apps have fast, offline test suites (Vitest):
+
+```bash
+cd backend && npm test    # API: routes, validation, API-key protection, errors, CORS
+cd frontend && npm test   # search matching, chapter grouping, retry while the backend wakes
+```
+
+The backend tests replace the database with a mock, so they never touch real data. GitHub Actions runs both suites, plus lint and a production build, on every push to `main`.
 
 ---
 
