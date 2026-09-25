@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import TurnLink from "./TurnLink";
 import Book from "./Book";
 import LeftPage from "./LeftPage";
 import { Divider } from "./Ornaments";
@@ -28,9 +28,9 @@ export default function StatusSpread({
         <Divider />
         {message && <p className="status__message">{message}</p>}
         {showIndexLink && (
-          <Link to="/" className="status__link">
+          <TurnLink to="/" direction="back" className="status__link">
             <span aria-hidden="true">‹</span> Return to the contents
-          </Link>
+          </TurnLink>
         )}
       </section>
     </Book>

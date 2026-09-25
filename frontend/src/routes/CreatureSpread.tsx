@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
+import { usePageTurn, type TurnDirection } from "./pageTurn";
 import { useApi } from "../api/useApi";
 import { ApiError } from "../api/client";
 import Book from "../components/Book";
@@ -23,7 +24,7 @@ const toLink = (c: Creature | undefined): PageLink | null => (c ? { id: c.id, na
 
 export default function CreatureSpread() {
   const { id = "" } = useParams();
-  const navigate = useNavigate();
+  const turnPage = usePageTurn();
   const { creatures, chapters } = useCodex();
   const detail = useApi<Creature>(`/api/creatures/${encodeURIComponent(id)}`);
 
@@ -37,14 +38,14 @@ export default function CreatureSpread() {
 
   // Arrow keys and horizontal swipes turn the page
   useEffect(() => {
-    const turn = (to: PageLink | null) => {
-      if (to) navigate(`/creatures/${to.id}`);
+    const turn = (to: PageLink | null, direction: TurnDirection) => {
+      if (to) turnPage(`/creatures/${to.id}`, direction);
     };
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
-      if (e.key === "ArrowLeft") turn(prev);
-      if (e.key === "ArrowRight") turn(next);
+      if (e.key === "ArrowLeft") turn(prev, "back");
+      if (e.key === "ArrowRight") turn(next, "forward");
     };
 
     let start: { x: number; y: number } | null = null;
@@ -60,7 +61,8 @@ export default function CreatureSpread() {
       start = null;
       // A deliberate sideways stroke, not a vertical scroll
       if (Math.abs(dx) < SWIPE_DISTANCE || Math.abs(dy) > Math.abs(dx) / 2) return;
-      turn(dx > 0 ? prev : next);
+      if (dx > 0) turn(prev, "back");
+      else turn(next, "forward");
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -71,7 +73,7 @@ export default function CreatureSpread() {
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchend", onTouchEnd);
     };
-  }, [prev, next, navigate]);
+  }, [prev, next, turnPage]);
 
   const pageNumber = index >= 0 ? index + 1 : null;
 
@@ -105,7 +107,7 @@ export default function CreatureSpread() {
   return (
     <Book label={`Bestiary entry: ${creature.name}`}>
       <title>{`${creature.name} · Tolkien Bestiary`}</title>
-      <LeftPage chapters={chapters} activeChapter={creature.category}>
+      <LeftPage chapters={chapters} activeChapter={creature.category} currentPage={pageNumber}>
         <MainIllustration
           name={creature.name}
           imageUrl={creature.imageUrl}

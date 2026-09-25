@@ -14,7 +14,7 @@ An illustrated codex of the creatures of Middle-earth, presented as an aged manu
 - **16 entries in 7 chapters:** Maiar, Orcs, Trolls, Beasts, Dragons, Ents and Birds. Each entry lists the creature's taxonomy, habitats, behavior, danger rating, lineage and notable specimens (Gothmog, Smaug, Treebeard and others).
 - **Engraved plates:** original illustrations in a 17th-century natural-history style, blended into the page like ink.
 - **Search:** filter the contents by name, chapter, habitat, notable specimen and more. Accents don't matter, and each search has its own shareable URL.
-- **Page turning:** prev/next links, the ← → arrow keys, or a swipe on touch screens.
+- **Page turning:** a 3D page-turn animation as you move through the book, using prev/next links, the ← → arrow keys or a swipe on touch screens. It falls back to a plain page switch where the browser lacks View Transitions or the reader prefers reduced motion.
 - **Responsive:** the book fits the window on desktop and stacks into a single page on tablets and phones.
 
 ---

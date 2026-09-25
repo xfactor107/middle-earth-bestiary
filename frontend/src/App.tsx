@@ -4,6 +4,7 @@ import ContentsSpread from "./routes/ContentsSpread";
 import CreatureSpread from "./routes/CreatureSpread";
 import StatusSpread from "./components/StatusSpread";
 import HostingNotice from "./components/HostingNotice";
+import "./routes/pageTurn.css";
 
 export default function App() {
   return (

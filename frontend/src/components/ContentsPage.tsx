@@ -1,4 +1,5 @@
-import { Link, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
+import TurnLink from "./TurnLink";
 import { Divider } from "./Ornaments";
 import { matchesQuery } from "../data/search";
 import type { Chapter } from "../data/chapters";
@@ -68,11 +69,11 @@ export default function ContentsPage({ chapters }: { chapters: Chapter[] }) {
               <ol className="contents__list">
                 {chapter.entries.map(({ creature, page }) => (
                   <li key={creature.id}>
-                    <Link to={`/creatures/${creature.id}`} className="contents__entry">
+                    <TurnLink to={`/creatures/${creature.id}`} className="contents__entry">
                       <span className="contents__name">{creature.name}</span>
                       <span className="contents__leader" aria-hidden="true" />
                       <span className="contents__folio">{pad(page)}</span>
-                    </Link>
+                    </TurnLink>
                   </li>
                 ))}
               </ol>

@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import TurnLink from "./TurnLink";
 import { TreeEmblem } from "./Ornaments";
 import type { Chapter } from "../data/chapters";
 import type { Category } from "../types/creature";
@@ -7,21 +7,23 @@ import "./SidebarIndex.css";
 interface SidebarIndexProps {
   chapters: Chapter[];
   activeChapter: Category | null;
+  // Page of the open entry, so chapter links know which way to turn
+  currentPage?: number | null;
 }
 
-export default function SidebarIndex({ chapters, activeChapter }: SidebarIndexProps) {
+export default function SidebarIndex({ chapters, activeChapter, currentPage = null }: SidebarIndexProps) {
   return (
     <nav className="sidebar" aria-label="Bestiary chapters">
-      <Link to="/" className="sidebar__back">
+      <TurnLink to="/" direction="back" className="sidebar__back">
         <span aria-hidden="true">‹</span> Back to Index
-      </Link>
+      </TurnLink>
 
       {/* Status pages have no chapters yet; skip the list so its rules don't show */}
       {chapters.length > 0 && (
         <ol className="sidebar__chapters">
           {chapters.map((chapter, i) => {
             const isActive = chapter.category === activeChapter;
-            const first = chapter.entries[0]?.creature;
+            const first = chapter.entries[0];
             const num = <span className="sidebar__num">{String(i + 1).padStart(2, "0")}</span>;
 
             return (
@@ -33,14 +35,15 @@ export default function SidebarIndex({ chapters, activeChapter }: SidebarIndexPr
                     {chapter.title}
                   </span>
                 ) : (
-                  <Link
-                    to={`/creatures/${first.id}`}
+                  <TurnLink
+                    to={`/creatures/${first.creature.id}`}
+                    direction={currentPage != null && first.page < currentPage ? "back" : "forward"}
                     className={`sidebar__chapter${isActive ? " is-active" : ""}`}
                     aria-current={isActive ? "true" : undefined}
                   >
                     {num}
                     {chapter.title}
-                  </Link>
+                  </TurnLink>
                 )}
               </li>
             );

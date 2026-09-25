@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import TurnLink from "./TurnLink";
 import CreatureStats from "./CreatureStats";
 import DetailDrawings from "./DetailDrawings";
 import NotableSpecimens from "./NotableSpecimens";
@@ -65,14 +65,23 @@ export default function RightPage({ creature, pageNumber, totalPages, prev, next
 
       <nav className="page-turn" aria-label="Turn the page">
         {prev && (
-          <Link to={`/creatures/${prev.id}`} className="page-turn__link page-turn__link--prev" rel="prev">
+          <TurnLink
+            to={`/creatures/${prev.id}`}
+            direction="back"
+            className="page-turn__link page-turn__link--prev"
+            rel="prev"
+          >
             <span aria-hidden="true">‹</span> {prev.name}
-          </Link>
+          </TurnLink>
         )}
         {next && (
-          <Link to={`/creatures/${next.id}`} className="page-turn__link page-turn__link--next" rel="next">
+          <TurnLink
+            to={`/creatures/${next.id}`}
+            className="page-turn__link page-turn__link--next"
+            rel="next"
+          >
             {next.name} <span aria-hidden="true">›</span>
-          </Link>
+          </TurnLink>
         )}
       </nav>
     </section>
