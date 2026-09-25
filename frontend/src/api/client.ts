@@ -1,5 +1,6 @@
-// Empty in development (Vite proxies /api); set VITE_API_URL when the API lives elsewhere
-const API_BASE = import.meta.env.VITE_API_URL ?? "";
+// Empty in development (Vite proxies /api); set VITE_API_URL when the API lives elsewhere.
+// A trailing slash is dropped so ".../" + "/api" does not become "//api".
+const API_BASE = (import.meta.env.VITE_API_URL ?? "").replace(/\/+$/, "");
 
 export class ApiError extends Error {
   status: number;
