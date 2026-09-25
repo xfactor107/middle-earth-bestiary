@@ -16,34 +16,37 @@ export default function SidebarIndex({ chapters, activeChapter }: SidebarIndexPr
         <span aria-hidden="true">‹</span> Back to Index
       </Link>
 
-      <ol className="sidebar__chapters">
-        {chapters.map((chapter, i) => {
-          const isActive = chapter.category === activeChapter;
-          const first = chapter.entries[0]?.creature;
-          const num = <span className="sidebar__num">{String(i + 1).padStart(2, "0")}</span>;
+      {/* Status pages have no chapters yet; skip the list so its rules don't show */}
+      {chapters.length > 0 && (
+        <ol className="sidebar__chapters">
+          {chapters.map((chapter, i) => {
+            const isActive = chapter.category === activeChapter;
+            const first = chapter.entries[0]?.creature;
+            const num = <span className="sidebar__num">{String(i + 1).padStart(2, "0")}</span>;
 
-          return (
-            <li key={chapter.category}>
-              {!first ? (
-                // No entries written for this chapter yet
-                <span className="sidebar__chapter is-empty">
-                  {num}
-                  {chapter.title}
-                </span>
-              ) : (
-                <Link
-                  to={`/creatures/${first.id}`}
-                  className={`sidebar__chapter${isActive ? " is-active" : ""}`}
-                  aria-current={isActive ? "true" : undefined}
-                >
-                  {num}
-                  {chapter.title}
-                </Link>
-              )}
-            </li>
-          );
-        })}
-      </ol>
+            return (
+              <li key={chapter.category}>
+                {!first ? (
+                  // No entries written for this chapter yet
+                  <span className="sidebar__chapter is-empty">
+                    {num}
+                    {chapter.title}
+                  </span>
+                ) : (
+                  <Link
+                    to={`/creatures/${first.id}`}
+                    className={`sidebar__chapter${isActive ? " is-active" : ""}`}
+                    aria-current={isActive ? "true" : undefined}
+                  >
+                    {num}
+                    {chapter.title}
+                  </Link>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      )}
 
       <div className="sidebar__emblem">
         <TreeEmblem className="sidebar__tree" />
