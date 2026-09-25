@@ -26,7 +26,7 @@ export default function CreatureSpread() {
   const { id = "" } = useParams();
   const turnPage = usePageTurn();
   const { creatures, chapters } = useCodex();
-  const detail = useApi<Creature>(`/api/creatures/${encodeURIComponent(id)}`);
+  const [detail, retryDetail] = useApi<Creature>(`/api/creatures/${encodeURIComponent(id)}`);
 
   const index = creatures.findIndex((c) => String(c.id) === id);
   // Memoized so the input listeners below are not re-registered mid-swipe
@@ -107,8 +107,9 @@ export default function CreatureSpread() {
     ) : (
       <StatusSpread
         title="The ink has run"
-        message="This entry could not be read from the archive. Try again in a moment."
+        message="This entry could not be read from the archive."
         chapters={chapters}
+        onRetry={retryDetail}
         showIndexLink
       />
     );

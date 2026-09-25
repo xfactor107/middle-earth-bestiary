@@ -59,7 +59,7 @@ export default function RightPage({ creature, pageNumber, totalPages, prev, next
       {creature.anatomicalSketches.length > 0 && (
         <>
           <Divider />
-          <DetailDrawings sketches={creature.anatomicalSketches} />
+          <DetailDrawings name={creature.name} sketches={creature.anatomicalSketches} />
         </>
       )}
 

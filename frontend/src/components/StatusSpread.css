@@ -14,6 +14,24 @@
   line-height: 1.6;
 }
 
+/* Styled as a rubricated label rather than a modern button */
+.status__retry {
+  align-self: flex-start;
+  padding: 0.35em 1.1em;
+  border: 1px solid var(--rubric);
+  border-radius: 2px;
+  background: transparent;
+  font-family: var(--font-caps);
+  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+  letter-spacing: 0.1em;
+  color: var(--rubric);
+  cursor: pointer;
+}
+
+.status__retry:hover {
+  background: rgba(124, 34, 22, 0.08);
+}
+
 .status__link {
   align-self: flex-start;
   font-size: clamp(1rem, 1.2vw, 1.2rem);

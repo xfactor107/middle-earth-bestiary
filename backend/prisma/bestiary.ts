@@ -117,7 +117,7 @@ export const BESTIARY: BestiaryEntry[] = [
     habitats: [HABITATS.tolInGaurhoth, HABITATS.angband],
     notables: [
       { name: 'Draugluin', title: 'Sire of Werewolves', status: 'Slain' },
-      { name: 'Carcharoth', title: 'The Red Maw', status: 'Slain' },
+      { name: 'Carcharoth', title: 'The Red Maw, wolf of Draugluin’s line', status: 'Slain' },
     ],
   },
 
@@ -151,11 +151,11 @@ export const BESTIARY: BestiaryEntry[] = [
     category: 'ORCS',
     taxonomy: 'Great Orcs',
     originEra: 'THIRD_AGE',
-    master: 'Saruman',
+    master: 'Saruman and Sauron',
     behavior: 'Endures sunlight, marches tirelessly, fights in disciplined ranks',
     dangerRating: 3,
     description:
-      'Great soldier-orcs, black and swart, that do not weaken under the Sun. Those of Isengard bore the White Hand of Saruman and made up the host that assailed Helm’s Deep.',
+      'Great soldier-orcs, black and swart, that do not weaken under the Sun. First bred in Mordor; those of Isengard bore the White Hand and assailed Helm’s Deep.',
     figureCaption: 'The Uruk-hai',
     imageUrl: '/images/uruk-hai-plate.webp',
     anatomicalSketches: [
@@ -324,7 +324,7 @@ export const BESTIARY: BestiaryEntry[] = [
     imageUrl: '/images/fire-drake-plate.webp',
     anatomicalSketches: [
       { title: 'Scale armour (detail)', imageUrl: '/images/fire-drake-scales.webp' },
-      { title: 'Bare patch of the breast', imageUrl: '/images/fire-drake-breast.webp' },
+      { title: 'Underside, with the bare patch', imageUrl: '/images/fire-drake-breast.webp' },
     ],
     habitats: [HABITATS.angband, HABITATS.erebor],
     notables: [
@@ -393,7 +393,7 @@ export const BESTIARY: BestiaryEntry[] = [
       { title: 'Grove at dusk', imageUrl: '/images/huorn-grove.webp' },
     ],
     habitats: [HABITATS.fangorn, HABITATS.oldForest],
-    notables: [{ name: 'Old Man Willow', title: 'Heart of the Old Forest', status: 'Unknown' }],
+    notables: [{ name: 'Old Man Willow', title: 'Of the Old Forest; a Huorn by some accounts', status: 'Unknown' }],
   },
 
   // ── Birds ────────────────────────────────────────────────

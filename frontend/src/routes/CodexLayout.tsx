@@ -11,7 +11,7 @@ const CONTENTS_PATH = "/api/creatures?limit=50&sortBy=category";
 
 // Loads the contents once; every page of the codex reads it from outlet context
 export default function CodexLayout() {
-  const contents = useApi<CreatureListResponse>(CONTENTS_PATH);
+  const [contents, retryContents] = useApi<CreatureListResponse>(CONTENTS_PATH);
 
   const context = useMemo<CodexContext | null>(() => {
     if (contents.status !== "success") return null;
@@ -23,7 +23,8 @@ export default function CodexLayout() {
     return (
       <StatusSpread
         title="The codex will not open"
-        message="The archive could not be reached. Check that the backend server is running, then refresh the page."
+        message="The archive could not be reached. It may still be waking, or the connection may have dropped."
+        onRetry={retryContents}
       />
     );
   }

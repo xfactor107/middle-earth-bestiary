@@ -10,6 +10,8 @@ interface StatusSpreadProps {
   message?: string;
   chapters?: Chapter[];
   showIndexLink?: boolean;
+  // Offers a "Try again" button that calls this
+  onRetry?: () => void;
 }
 
 // A spread with no entry on it: loading, errors and missing pages
@@ -18,6 +20,7 @@ export default function StatusSpread({
   message,
   chapters = [],
   showIndexLink = false,
+  onRetry,
 }: StatusSpreadProps) {
   return (
     <Book label={title}>
@@ -27,6 +30,11 @@ export default function StatusSpread({
         <h1 className="status__title">{title}</h1>
         <Divider />
         {message && <p className="status__message">{message}</p>}
+        {onRetry && (
+          <button type="button" className="status__retry" onClick={onRetry}>
+            Try again
+          </button>
+        )}
         {showIndexLink && (
           <TurnLink to="/" direction="back" className="status__link">
             <span aria-hidden="true">‹</span> Return to the contents
