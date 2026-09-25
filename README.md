@@ -81,7 +81,7 @@ During development, Vite forwards `/api` requests to the backend on port 3000, s
 
 | Variable | Required | Purpose |
 |---|---|---|
-| `DATABASE_URL` | Yes | PostgreSQL connection string |
+| `DATABASE_URL` | Yes | PostgreSQL connection string. Use Neon's **direct** connection (the host without `-pooler`) wherever migrations run: through the pooler, Prisma's migration lock can get stuck and later migrations fail with `P1002`. |
 | `PORT` | No | Port for the API (default `3000`) |
 | `ADMIN_API_KEY` | No | Secret needed for `POST`/`PUT`/`DELETE`. If unset, writes are disabled. |
 | `CORS_ORIGIN` | No | Comma-separated list of allowed origins, e.g. `https://your-app.vercel.app`. If unset, any origin is allowed. |
