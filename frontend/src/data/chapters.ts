@@ -11,6 +11,8 @@ const CHAPTER_TITLES: Record<Category, string> = {
   BIRDS: "Birds",
 };
 
+export const chapterTitle = (category: Category) => CHAPTER_TITLES[category];
+
 export interface Chapter {
   category: Category;
   title: string;
