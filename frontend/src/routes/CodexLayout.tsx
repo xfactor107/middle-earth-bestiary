@@ -29,7 +29,12 @@ export default function CodexLayout() {
   }
 
   if (!context) {
-    return <StatusSpread title="Opening the codex…" />;
+    return (
+      <StatusSpread
+        title="Opening the codex…"
+        message="The archive is hosted on Render’s free tier, so after a quiet spell it can take 30–60 seconds to wake. The pages will appear on their own once it does."
+      />
+    );
   }
 
   return <Outlet context={context} />;

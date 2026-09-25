@@ -34,6 +34,9 @@
      typical screens, but viewport height on short, wide ones (e.g. 1366x768) */
   --u: min(1vw, 1.55vh);
 
+  /* Height reserved beneath the book for the hosting notice */
+  --notice-space: calc(2.1rem + clamp(8px, 1.2vh, 16px));
+
   color-scheme: light;
 }
 
@@ -55,7 +58,10 @@ body {
 
 .desk {
   display: grid;
+  /* Book fills the space; the hosting notice sits on the desk below it */
+  grid-template-rows: 1fr auto;
   place-items: center;
+  gap: clamp(8px, 1.2vh, 16px);
   min-height: 100vh;
   padding: clamp(12px, 2.5vh, 40px) clamp(16px, 3vw, 48px);
 }

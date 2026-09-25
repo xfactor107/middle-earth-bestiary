@@ -3,6 +3,7 @@ import CodexLayout from "./routes/CodexLayout";
 import ContentsSpread from "./routes/ContentsSpread";
 import CreatureSpread from "./routes/CreatureSpread";
 import StatusSpread from "./components/StatusSpread";
+import HostingNotice from "./components/HostingNotice";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           }
         />
       </Routes>
+      <HostingNotice />
     </main>
   );
 }

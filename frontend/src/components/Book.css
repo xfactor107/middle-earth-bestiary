@@ -5,7 +5,7 @@
   grid-template-columns: 1fr 1fr;
   width: min(100%, 1500px);
   /* Fill the viewport height on desktop without spilling below the fold */
-  min-height: min(66vw, 980px, calc(100vh - 2 * clamp(12px, 2.5vh, 40px)));
+  min-height: min(66vw, 980px, calc(100vh - 2 * clamp(12px, 2.5vh, 40px) - var(--notice-space)));
   padding: 10px;
   border-radius: 8px;
   background:
