@@ -1,3 +1,5 @@
+// The book's cover and binding: a two-column spread holding a left and right
+// page (see Book.css). Also defines the #deckle SVG filter that roughens page edges.
 import type { ReactNode } from "react";
 import "./Book.css";
 

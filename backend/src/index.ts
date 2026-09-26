@@ -1,3 +1,5 @@
+// Server entry point: loads .env, then starts the app built in app.ts.
+// Kept separate from app.ts so tests can import the app without opening a port.
 import "dotenv/config";
 import app from "./app.js";
 

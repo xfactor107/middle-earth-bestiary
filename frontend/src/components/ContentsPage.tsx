@@ -8,6 +8,8 @@ import "./ContentsPage.css";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
+// The contents page: a search field ("Seek") above the entries, grouped by
+// chapter. Search runs in the browser over the already-loaded codex (data/search.ts).
 export default function ContentsPage({ chapters }: { chapters: Chapter[] }) {
   const [query, setQuery] = useSearchQuery();
   const inputRef = useRef<HTMLInputElement>(null);

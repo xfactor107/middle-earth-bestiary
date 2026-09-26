@@ -1,6 +1,10 @@
 import type { Request, Response, NextFunction } from "express";
 import { ZodError, type ZodType } from "zod";
 
+// Validates a request against a Zod schema shaped like { body?, query?, params? }.
+// On success the parsed values (trimmed, coerced to numbers, defaults filled in)
+// replace the raw ones, so controllers can trust their inputs. On failure it
+// answers 400 with one entry per invalid field, e.g. { field: "query.limit", message }.
 export const validateRequest = (schema: ZodType) => {
   return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {

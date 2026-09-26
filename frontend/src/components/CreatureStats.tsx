@@ -2,6 +2,8 @@ import DangerRating from "./DangerRating";
 import type { Creature } from "../types/creature";
 import "./CreatureStats.css";
 
+// The labelled facts under an entry's name. Missing values read "Unrecorded"
+// rather than leaving a gap, as a scribe would note an unknown.
 export default function CreatureStats({ creature }: { creature: Creature }) {
   const habitats = creature.habitats.map(({ habitat }) => habitat.name).join(", ");
 

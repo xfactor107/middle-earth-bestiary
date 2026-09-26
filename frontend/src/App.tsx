@@ -1,3 +1,15 @@
+// The app is one open book on a desk. Every route renders a two-page "spread".
+//
+//   /                  ContentsSpread   table of contents with search (?q=)
+//   /creatures/:id     CreatureSpread   one bestiary entry
+//   anything else      StatusSpread     "This page is lost"
+//
+// How data flows:
+//   CodexLayout fetches the whole codex once (GET /api/creatures) and shares it with
+//   both spreads through outlet context (useCodex). CreatureSpread renders an entry
+//   from that list instantly, then refreshes it from GET /api/creatures/:id.
+//   All requests go through api/client.ts, which keeps retrying while the free-tier
+//   backend wakes up.
 import { Route, Routes } from "react-router";
 import CodexLayout from "./routes/CodexLayout";
 import ContentsSpread from "./routes/ContentsSpread";

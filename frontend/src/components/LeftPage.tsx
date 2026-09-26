@@ -1,3 +1,5 @@
+// The left-hand page: masthead, chapter sidebar, and a slot beside the sidebar
+// (the plate on entries, the frontispiece on the index).
 import type { ReactNode } from "react";
 import SidebarIndex from "./SidebarIndex";
 import { CompassRose } from "./Ornaments";

@@ -1,3 +1,7 @@
+// Request handlers for /api/creatures. By the time these run, validateRequest has
+// already checked and converted the input, and requireAdmin has guarded writes.
+// Errors are passed to next() and turned into HTTP responses by the handler in app.ts
+// (e.g. Prisma's "record not found" becomes a 404).
 import type { Request, Response, NextFunction } from "express";
 import type { Prisma } from "@prisma/client";
 import prisma from "../lib/prisma.js";
@@ -17,6 +21,8 @@ const creatureInclude = {
   notables: true,
 } satisfies Prisma.CreatureInclude;
 
+// GET /api/creatures: filtered, sorted, paginated list.
+// The frontend loads the whole codex with ?limit=50&sortBy=category.
 export const getCreatures = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // Already coerced and defaulted by getCreaturesQuerySchema
@@ -63,6 +69,7 @@ export const getCreatures = async (req: Request, res: Response, next: NextFuncti
       }),
     };
 
+    // Count and page in one transaction so the totals match the rows returned
     const [totalCount, creatures] = await prisma.$transaction([
       prisma.creature.count({ where }),
       prisma.creature.findMany({

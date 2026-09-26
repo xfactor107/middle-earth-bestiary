@@ -1,3 +1,6 @@
+// Zod schemas for every /api/creatures request, used by validateRequest.
+// Each describes the parts of the request it checks ({ query }, { params }, { body }),
+// and the exported types below give controllers correctly typed inputs.
 import { z } from "zod";
 
 const categorySchema = z.enum(["MAIAR", "ORCS", "TROLLS", "BEASTS", "DRAGONS", "ENTS", "BIRDS"]);

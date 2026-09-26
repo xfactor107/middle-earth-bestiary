@@ -1,3 +1,10 @@
+/* Global design tokens and base styles.
+   - Colours: parchment, leather and iron-gall ink tones; never pure black.
+   - Fonts: Grenze Gotisch (display), Almendra (body), Almendra SC (labels).
+   - --u: a sizing unit that follows viewport width, or height on short screens,
+     so the whole spread fits on laptops.
+   - --paper-*: grain, foxing and stains generated from SVG noise, so the
+     aged paper needs no texture images. */
 :root {
   --desk: #1a1613;
   --leather: #2e1c12;

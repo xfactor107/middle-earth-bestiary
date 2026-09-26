@@ -1,3 +1,5 @@
+// The framed plate on an entry's left page. The frame (double rule and corner
+// ornaments) is drawn in code; only the illustration itself is an image.
 import Engraving from "./Engraving";
 import { FrameCorner } from "./Ornaments";
 import "./MainIllustration.css";

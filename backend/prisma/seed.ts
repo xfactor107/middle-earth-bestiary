@@ -1,3 +1,6 @@
+// Writes the entries from bestiary.ts into the database (npm run seed).
+// Note: local development and the live site share one database, so running
+// this updates the live site too. It only upserts; it never deletes a creature.
 import { PrismaClient } from '@prisma/client';
 import { BESTIARY } from './bestiary.js';
 

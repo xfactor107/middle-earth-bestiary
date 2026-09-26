@@ -22,6 +22,10 @@ function figureCaption(creature: Creature, page: number | null): string {
 
 const toLink = (c: Creature | undefined): PageLink | null => (c ? { id: c.id, name: c.name } : null);
 
+// One entry at /creatures/:id. Draws the entry from the already-loaded codex so
+// it appears at once (and page turns have something to animate), refreshes it
+// from the API, preloads its neighbours' art, and turns pages on arrow keys and
+// swipes. Shows a status spread while loading, if the id is unknown, or on errors.
 export default function CreatureSpread() {
   const { id = "" } = useParams();
   const turnPage = usePageTurn();

@@ -4,6 +4,8 @@ import MainIllustration from "../components/MainIllustration";
 import ContentsPage from "../components/ContentsPage";
 import { useCodex } from "./codexContext";
 
+// The index at "/": the frontispiece on the left page, the searchable contents
+// on the right.
 export default function ContentsSpread() {
   const { chapters } = useCodex();
 

@@ -1,3 +1,5 @@
+// The right-hand page of an entry: name and page number, lineage, stats,
+// description, notable specimens, sketches, and links to turn the page.
 import TurnLink from "./TurnLink";
 import CreatureStats from "./CreatureStats";
 import DetailDrawings from "./DetailDrawings";

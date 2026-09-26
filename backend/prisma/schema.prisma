@@ -1,3 +1,7 @@
+// Database schema for the bestiary. Change it with a migration
+// (npx prisma migrate dev --name <change>), never by editing the database directly.
+// Run migrations over Neon's DIRECT connection, not the "-pooler" one.
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -25,6 +29,9 @@ enum Category {
   BIRDS
 }
 
+// A bestiary entry. Its page number in the book is not stored: it is the
+// creature's position in codex order (category, then name). Likewise the danger
+// label ("Extreme") is derived from dangerRating on the frontend.
 model Creature {
   id                 Int               @id @default(autoincrement())
   name               String            @unique
@@ -48,6 +55,8 @@ model Creature {
   @@map("creatures")
 }
 
+// A famous individual of a kind (e.g. Smaug for the Fire-drake), shown under
+// "Notable Specimens". Deleted along with its creature.
 model NotableBeast {
   id          Int      @id @default(autoincrement())
   name        String   @unique
@@ -68,6 +77,8 @@ model Habitat {
   @@map("habitats")
 }
 
+// Join table: a creature can live in many habitats, and a habitat can hold
+// many creatures (e.g. Mordor has Orcs, Olog-hai and Great Spiders).
 model CreatureHabitat {
   creatureId Int
   habitatId  Int
