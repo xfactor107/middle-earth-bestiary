@@ -1,16 +1,25 @@
 import { useRef } from "react";
 import TurnLink from "./TurnLink";
-import { Divider } from "./Ornaments";
+import { Divider, TurnArrow } from "./Ornaments";
 import { matchesQuery } from "../data/search";
 import { useSearchQuery } from "../routes/useSearchQuery";
 import type { Chapter } from "../data/chapters";
+import type { PageLink } from "./RightPage";
 import "./ContentsPage.css";
+// Shares the entry pages' page-turn link styles
+import "./RightPage.css";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
 // The contents page: a search field ("Seek") above the entries, grouped by
 // chapter. Search runs in the browser over the already-loaded codex (data/search.ts).
-export default function ContentsPage({ chapters }: { chapters: Chapter[] }) {
+interface ContentsPageProps {
+  chapters: Chapter[];
+  // The first entry, reached by turning the page; null while the codex is empty
+  first: PageLink | null;
+}
+
+export default function ContentsPage({ chapters, first }: ContentsPageProps) {
   const [query, setQuery] = useSearchQuery();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -93,6 +102,18 @@ export default function ContentsPage({ chapters }: { chapters: Chapter[] }) {
             </section>
           ))}
         </div>
+      )}
+
+      {first && (
+        <nav className="page-turn" aria-label="Turn the page">
+          <TurnLink
+            to={`/creatures/${first.id}`}
+            className="page-turn__link page-turn__link--next"
+            rel="next"
+          >
+            {first.name} <TurnArrow direction="forward" />
+          </TurnLink>
+        </nav>
       )}
     </section>
   );

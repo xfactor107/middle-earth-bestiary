@@ -7,7 +7,8 @@ import { useCodex } from "./codexContext";
 // The index at "/": the frontispiece on the left page, the searchable contents
 // on the right.
 export default function ContentsSpread() {
-  const { chapters } = useCodex();
+  const { creatures, chapters } = useCodex();
+  const first = creatures[0] ?? null;
 
   return (
     <Book label="Contents of the bestiary">
@@ -15,7 +16,7 @@ export default function ContentsSpread() {
       <LeftPage chapters={chapters} activeChapter={null}>
         <MainIllustration name="Frontispiece" imageUrl="/images/frontispiece.webp" caption="Frontispiece" />
       </LeftPage>
-      <ContentsPage chapters={chapters} />
+      <ContentsPage chapters={chapters} first={first && { id: first.id, name: first.name }} />
     </Book>
   );
 }

@@ -23,6 +23,16 @@ export function Divider({ className = "" }: { className?: string }) {
   );
 }
 
+// A solid page-turn arrow, drawn rather than typed so it looks the same whatever
+// font is loaded and never becomes a coloured emoji. Sized to the text (index.css).
+export function TurnArrow({ direction }: { direction: "back" | "forward" }) {
+  return (
+    <svg className="turn-arrow" viewBox="0 0 10 12" aria-hidden="true">
+      <path d={direction === "back" ? "M10 0 L0 6 L10 12 Z" : "M0 0 L10 6 L0 12 Z"} fill="currentColor" />
+    </svg>
+  );
+}
+
 export function CompassRose({ className = "" }: { className?: string }) {
   return (
     <svg className={className} viewBox="-50 -50 100 100" aria-hidden="true">

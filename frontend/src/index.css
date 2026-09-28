@@ -74,6 +74,14 @@ body {
 }
 
 /* Read by screen readers, invisible on the page */
+/* Page-turn arrow beside link text (TurnArrow in Ornaments.tsx) */
+.turn-arrow {
+  width: 0.55em;
+  height: 0.66em;
+  margin-inline: 0.15em;
+  vertical-align: 0.02em;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

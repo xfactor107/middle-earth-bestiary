@@ -1,6 +1,6 @@
 import { useLocation } from "react-router";
 import TurnLink from "./TurnLink";
-import { TreeEmblem } from "./Ornaments";
+import { TreeEmblem, TurnArrow } from "./Ornaments";
 import type { Chapter } from "../data/chapters";
 import type { Category } from "../types/creature";
 import "./SidebarIndex.css";
@@ -20,7 +20,7 @@ export default function SidebarIndex({ chapters, activeChapter, currentPage = nu
     <nav className="sidebar" aria-label="Bestiary chapters">
       {!onIndex && (
         <TurnLink to="/" direction="back" className="sidebar__back">
-          <span aria-hidden="true">‹</span> Back to Index
+          <TurnArrow direction="back" /> Back to Index
         </TurnLink>
       )}
 

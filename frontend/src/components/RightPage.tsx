@@ -4,7 +4,7 @@ import TurnLink from "./TurnLink";
 import CreatureStats from "./CreatureStats";
 import DetailDrawings from "./DetailDrawings";
 import NotableSpecimens from "./NotableSpecimens";
-import { Divider } from "./Ornaments";
+import { Divider, TurnArrow } from "./Ornaments";
 import type { Creature, Era } from "../types/creature";
 import "./RightPage.css";
 
@@ -73,7 +73,7 @@ export default function RightPage({ creature, pageNumber, totalPages, prev, next
             className="page-turn__link page-turn__link--prev"
             rel="prev"
           >
-            <span aria-hidden="true">‹</span> {prev.name}
+            <TurnArrow direction="back" /> {prev.name}
           </TurnLink>
         )}
         {next && (
@@ -82,7 +82,7 @@ export default function RightPage({ creature, pageNumber, totalPages, prev, next
             className="page-turn__link page-turn__link--next"
             rel="next"
           >
-            {next.name} <span aria-hidden="true">›</span>
+            {next.name} <TurnArrow direction="forward" />
           </TurnLink>
         )}
       </nav>

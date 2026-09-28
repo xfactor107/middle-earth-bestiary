@@ -1,7 +1,7 @@
 import TurnLink from "./TurnLink";
 import Book from "./Book";
 import LeftPage from "./LeftPage";
-import { Divider } from "./Ornaments";
+import { Divider, TurnArrow } from "./Ornaments";
 import type { Chapter } from "../data/chapters";
 import "./StatusSpread.css";
 
@@ -37,7 +37,7 @@ export default function StatusSpread({
         )}
         {showIndexLink && (
           <TurnLink to="/" direction="back" className="status__link">
-            <span aria-hidden="true">‹</span> Return to the contents
+            <TurnArrow direction="back" /> Return to the contents
           </TurnLink>
         )}
       </section>
