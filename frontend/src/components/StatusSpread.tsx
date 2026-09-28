@@ -24,7 +24,7 @@ export default function StatusSpread({
 }: StatusSpreadProps) {
   return (
     <Book label={title}>
-      <title>{`${title} · Tolkien Bestiary`}</title>
+      <title>{`${title} · Middle-earth Bestiary`}</title>
       <LeftPage chapters={chapters} activeChapter={null} />
       <section className="page page--right status">
         <h1 className="status__title">{title}</h1>

@@ -11,7 +11,7 @@ export default function ContentsSpread() {
 
   return (
     <Book label="Contents of the bestiary">
-      <title>Tolkien Bestiary</title>
+      <title>Middle-earth Bestiary</title>
       <LeftPage chapters={chapters} activeChapter={null}>
         <MainIllustration name="Frontispiece" imageUrl="/images/frontispiece.webp" caption="Frontispiece" />
       </LeftPage>

@@ -20,7 +20,7 @@ export default function LeftPage({ chapters, activeChapter, currentPage, childre
     <section className="page page--left">
       <header className="masthead">
         <CompassRose className="masthead__compass" />
-        <p className="masthead__title">Tolkien Bestiary</p>
+        <p className="masthead__title">Middle-earth Bestiary</p>
       </header>
 
       <div className="left-page__body">

@@ -1,10 +1,10 @@
-# 🗡️ Tolkien Bestiary
+# 🗡️ Middle-earth Bestiary
 
 [![Tests](https://github.com/xfactor107/middle-earth-bestiary/actions/workflows/test.yml/badge.svg)](https://github.com/xfactor107/middle-earth-bestiary/actions/workflows/test.yml)
 
 An illustrated codex of the creatures of Middle-earth, presented as an aged manuscript that a scholar like Gandalf might have studied. Turn its pages to read of Balrogs, dragons, Ents and the other beasts of Tolkien's legendarium.
 
-![The Balrog's entry in the Tolkien Bestiary](docs/screenshot.webp)
+![The Balrog's entry in the Middle-earth Bestiary](docs/screenshot.webp)
 
 ---
 

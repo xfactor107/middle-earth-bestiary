@@ -121,7 +121,7 @@ export default function CreatureSpread() {
 
   return (
     <Book label={`Bestiary entry: ${creature.name}`}>
-      <title>{`${creature.name} · Tolkien Bestiary`}</title>
+      <title>{`${creature.name} · Middle-earth Bestiary`}</title>
       <LeftPage chapters={chapters} activeChapter={creature.category} currentPage={pageNumber}>
         <MainIllustration
           name={creature.name}
