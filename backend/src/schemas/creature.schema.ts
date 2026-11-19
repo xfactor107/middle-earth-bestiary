@@ -38,8 +38,10 @@ export const createCreatureSchema = z.object({
   body: z.object({
     name: z.string().trim().min(2, "Name must be at least 2 characters long"),
     category: categorySchema,
+    // null for a creature no source dates
     originEra: z
       .enum(["YEARS_OF_THE_TREES", "FIRST_AGE", "SECOND_AGE", "THIRD_AGE"])
+      .nullable()
       .default("THIRD_AGE"),
     master: z.string().trim().optional().nullable(),
     description: z.string().trim().min(10, "Description must be at least 10 characters"),

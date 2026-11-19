@@ -52,6 +52,42 @@ export const HABITATS = {
     name: 'Crissaegrim',
     description: 'The mountain peaks south of Gondolin where Thorondor kept his eyries.',
   },
+  dunland: {
+    name: 'Dunland',
+    description: 'Hill country west of the southern Misty Mountains and north of the Gap of Rohan.',
+  },
+  hollin: {
+    name: 'Hollin',
+    description: 'The former Elven country of Eregion, west of the Misty Mountains.',
+  },
+  ravenhill: {
+    name: 'Ravenhill',
+    description: 'A foothill of the Lonely Mountain where the ravens made their home.',
+  },
+  seaOfRhun: {
+    name: 'Sea of Rhûn',
+    description: 'A great inland sea in the East, with open fields along its shores.',
+  },
+  valinor: {
+    name: 'Valinor',
+    description: 'The land of the Valar in Aman, across the Great Sea.',
+  },
+  nargothrond: {
+    name: 'Nargothrond',
+    description: 'Finrod’s hidden realm and halls beside the Narog in western Beleriand.',
+  },
+  doriath: {
+    name: 'Doriath',
+    description: 'Thingol and Melian’s woodland realm in Beleriand.',
+  },
+  barrowDowns: {
+    name: 'Barrow-downs',
+    description: 'Hills east of the Old Forest, marked by ancient burial mounds.',
+  },
+  marshOfTode: {
+    name: 'Marsh of Tode',
+    description: 'A marsh on the road to the Mewlips’ cellars in hobbit verse.',
+  },
 } as const;
 
 type HabitatSeed = (typeof HABITATS)[keyof typeof HABITATS];
@@ -60,7 +96,8 @@ export interface BestiaryEntry {
   name: string;
   category: Category;
   taxonomy: string;
-  originEra: Era;
+  // null when no source dates the creature
+  originEra: Era | null;
   master: string | null;
   behavior: string;
   // 1 Negligible · 2 Wary · 3 Perilous · 4 Extreme · 5 Catastrophic
@@ -308,6 +345,83 @@ export const BESTIARY: BestiaryEntry[] = [
     habitats: [HABITATS.khazadDum],
     notables: [],
   },
+  {
+    name: 'Barrow-wight',
+    category: 'BEASTS',
+    taxonomy: 'Evil spirit inhabiting a burial mound',
+    originEra: 'THIRD_AGE',
+    master: 'the Witch-king of Angmar',
+    behavior: 'Haunts burial chambers and lays spells on trespassers',
+    dangerRating: 3,
+    description:
+      'After plague emptied much of Cardolan, evil spirits from Angmar and Rhudaur came to dwell in its burial mounds. One caught four hobbits in the fog. Frodo woke beneath the hill to find his companions laid out among the grave goods, and a cold hand creeping toward them through the dark. Tom Bombadil answered his call and drove the wight out of the mound.',
+    figureCaption: 'A hand in the barrow',
+    imageUrl: '/images/barrow-wight-plate.webp',
+    anatomicalSketches: [
+      { title: 'The reaching hand (detail)', imageUrl: '/images/barrow-wight-hand.webp' },
+      { title: 'Bronze grave brooch (reconstruction)', imageUrl: '/images/barrow-wight-brooch.webp' },
+    ],
+    habitats: [HABITATS.barrowDowns],
+    notables: [],
+  },
+  {
+    name: 'Hound of Valinor',
+    category: 'BEASTS',
+    taxonomy: 'Hounds of Oromë the Hunter',
+    originEra: 'FIRST_AGE',
+    master: null,
+    behavior: 'Tireless tracker and defender of his companions',
+    dangerRating: 2,
+    description:
+      'Greatest of the hounds of Valinor was Huan, whom Oromë gave to Celegorm. He helped Lúthien free Beren from Sauron’s isle, then turned against his master to defend them. Thrice only he spoke with words, the last time to bid Beren farewell, after slaying Carcharoth in Doriath.',
+    figureCaption: 'Huan, the Hound of Valinor',
+    imageUrl: '/images/huan-plate.webp',
+    anatomicalSketches: [
+      { title: 'Forepaw (underside)', imageUrl: '/images/huan-paw.webp' },
+      { title: 'Head and muzzle (profile)', imageUrl: '/images/huan-muzzle.webp' },
+    ],
+    habitats: [HABITATS.valinor, HABITATS.nargothrond, HABITATS.tolInGaurhoth, HABITATS.doriath],
+    notables: [{ name: 'Huan', title: 'Hound of Celegorm, friend of Lúthien', status: 'Slain' }],
+  },
+  {
+    name: 'Kine of Araw',
+    category: 'BEASTS',
+    taxonomy: 'Wild white oxen of the East',
+    originEra: 'THIRD_AGE',
+    master: null,
+    behavior: 'Roams the open fields near the Sea of Rhûn',
+    dangerRating: 2,
+    description:
+      'Wild white oxen once roamed the fields near the Sea of Rhûn. Gondorian legend traced them to the cattle of Oromë, whom the Elves called Araw. Vorondil the Hunter took a horn from one of these beasts and fashioned the Great Horn, which passed down through the House of the Stewards until Boromir bore it on his last journey.',
+    figureCaption: 'One of the wild kine of Rhûn',
+    imageUrl: '/images/kine-of-araw-plate.webp',
+    anatomicalSketches: [
+      { title: 'Unworked horn (detail)', imageUrl: '/images/kine-of-araw-horn.webp' },
+      { title: 'Cloven tracks (detail)', imageUrl: '/images/kine-of-araw-tracks.webp' },
+    ],
+    habitats: [HABITATS.seaOfRhun],
+    notables: [],
+  },
+  {
+    name: 'Mewlips',
+    category: 'BEASTS',
+    taxonomy: 'Cellar-dwellers of hobbit verse',
+    // The poem gives them no date
+    originEra: null,
+    master: null,
+    behavior: 'Said to hoard gold and prey on visitors',
+    dangerRating: 3,
+    description:
+      'A hobbit poem tells of a lonely road through marsh and hanging woods to a cellar door with a bell. Behind it, in the damp and dark, the Mewlips count their gold. The tale offers little account of their likeness. It says more about the fate of anyone who goes far enough to knock.',
+    figureCaption: 'A Mewlip as imagined from the old verse',
+    imageUrl: '/images/mewlip-plate.webp',
+    anatomicalSketches: [
+      { title: 'The cellar door (reconstruction)', imageUrl: '/images/mewlip-door.webp' },
+      { title: 'A pool in the marsh of Tode', imageUrl: '/images/mewlip-marsh.webp' },
+    ],
+    habitats: [HABITATS.marshOfTode],
+    notables: [],
+  },
 
   // ── Dragons ──────────────────────────────────────────────
   {
@@ -418,6 +532,48 @@ export const BESTIARY: BestiaryEntry[] = [
       { name: 'Thorondor', title: 'King of Eagles', status: 'Unknown' },
       { name: 'Gwaihir', title: 'The Windlord', status: 'Living' },
       { name: 'Landroval', title: 'Brother of Gwaihir', status: 'Living' },
+    ],
+  },
+  {
+    name: 'Crebain',
+    category: 'BIRDS',
+    taxonomy: 'Large birds of the crow-kind',
+    originEra: 'THIRD_AGE',
+    // Thought to spy for Saruman, but never shown to
+    master: null,
+    behavior: 'Travels in flocks and circles over open ground',
+    dangerRating: 2,
+    description:
+      'The large crows of Dunland and Fangorn range in flocks. In Hollin the Fellowship watched them circle and wheel as though searching the land below, and fearing that an enemy had sent them, the company stayed under cover and went without a fire. A lone craban might pass for an ordinary crow; a flock searching the hills could give away an entire company.',
+    figureCaption: 'A craban over Hollin',
+    imageUrl: '/images/crebain-plate.webp',
+    anatomicalSketches: [
+      { title: 'Spread wing (detail)', imageUrl: '/images/crebain-wing.webp' },
+      { title: 'Flock over a ridge', imageUrl: '/images/crebain-flock.webp' },
+    ],
+    habitats: [HABITATS.dunland, HABITATS.fangorn, HABITATS.hollin],
+    notables: [],
+  },
+  {
+    name: 'Ravens of Erebor',
+    category: 'BIRDS',
+    taxonomy: 'Long-lived ravens of Ravenhill',
+    originEra: 'THIRD_AGE',
+    master: null,
+    behavior: 'Speaks with the Dwarves and carries news',
+    dangerRating: 1,
+    description:
+      'Long friends to the Dwarves of Erebor, the ravens of Ravenhill speak the common tongue. Roäc, a hundred and fifty-three years out of the egg, brought Thorin word of Smaug’s death, carried his messages to Dáin, and warned him that the treasure might yet be his death.',
+    figureCaption: 'Roäc on Ravenhill',
+    imageUrl: '/images/ravens-of-erebor-plate.webp',
+    anatomicalSketches: [
+      { title: 'Bill and throat feathers (profile)', imageUrl: '/images/ravens-of-erebor-bill.webp' },
+      { title: 'Spread tail (detail)', imageUrl: '/images/ravens-of-erebor-tail.webp' },
+    ],
+    habitats: [HABITATS.ravenhill, HABITATS.erebor],
+    notables: [
+      { name: 'Roäc', title: 'Chief of the ravens of Ravenhill', status: 'Unknown' },
+      { name: 'Carc', title: 'Father of Roäc', status: 'Dead' },
     ],
   },
 ];

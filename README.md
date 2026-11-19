@@ -11,7 +11,7 @@ An illustrated codex of the creatures of Middle-earth, presented as an aged manu
 ## 🌟 Features
 
 - **An open-book codex:** a two-page spread on aged parchment, with foxing, stains, deckled edges and ink that soaks into the paper. The textures are all generated in code, so there are no texture images to load.
-- **16 entries in 7 chapters:** Maiar, Orcs, Trolls, Beasts, Dragons, Ents and Birds. Each entry lists the creature's taxonomy, habitats, behavior, danger rating, lineage and notable specimens (Gothmog, Smaug, Treebeard and others).
+- **22 entries in 7 chapters:** Maiar, Orcs, Trolls, Beasts, Dragons, Ents and Birds. Each entry lists the creature's taxonomy, habitats, behavior, danger rating, lineage and notable specimens (Gothmog, Smaug, Treebeard, Huan, Roäc and others).
 - **Engraved plates:** original illustrations in a 17th-century natural-history style, blended into the page like ink.
 - **Search:** filter the contents by name, chapter, habitat, notable specimen and more. Accents don't matter, and each search has its own shareable URL.
 - **Page turning:** a 3D page-turn animation as you move through the book, using prev/next links, the ← → arrow keys or a swipe on touch screens. It falls back to a plain page switch where the browser lacks View Transitions or the reader prefers reduced motion.
@@ -59,7 +59,7 @@ cd backend
 npm install
 cp .env.example .env        # then set DATABASE_URL (see below)
 npm run migrate:deploy      # create the tables
-npm run seed                # write the 16 bestiary entries
+npm run seed                # write the 22 bestiary entries
 npm run dev                 # API on http://localhost:3000
 ```
 

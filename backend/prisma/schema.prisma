@@ -36,7 +36,8 @@ model Creature {
   id                 Int               @id @default(autoincrement())
   name               String            @unique
   category           Category
-  originEra          Era               @default(THIRD_AGE)
+  // Null when no source dates the creature (shown as "Of an unrecorded age")
+  originEra          Era?              @default(THIRD_AGE)
   master             String?
   description        String            @db.Text
   createdAt          DateTime          @default(now())

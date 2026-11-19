@@ -33,7 +33,8 @@ export interface Creature {
   id: number;
   name: string;
   category: Category;
-  originEra: Era;
+  // null when no source dates the creature
+  originEra: Era | null;
   master: string | null;
   description: string;
   createdAt: string;

@@ -5,24 +5,11 @@ import CreatureStats from "./CreatureStats";
 import DetailDrawings from "./DetailDrawings";
 import NotableSpecimens from "./NotableSpecimens";
 import { Divider, TurnArrow } from "./Ornaments";
-import type { Creature, Era } from "../types/creature";
+import { lineage } from "../data/lineage";
+import type { Creature } from "../types/creature";
 import "./RightPage.css";
 
 const pad = (n: number) => String(n).padStart(2, "0");
-
-const ERA_NAMES: Record<Era, string> = {
-  YEARS_OF_THE_TREES: "the Years of the Trees",
-  FIRST_AGE: "the First Age",
-  SECOND_AGE: "the Second Age",
-  THIRD_AGE: "the Third Age",
-};
-
-// e.g. "Of the Years of the Trees · Servant of Morgoth"
-function lineage(creature: Creature): string {
-  const parts = [`Of ${ERA_NAMES[creature.originEra]}`];
-  if (creature.master) parts.push(`Servant of ${creature.master}`);
-  return parts.join(" · ");
-}
 
 export interface PageLink {
   id: number;

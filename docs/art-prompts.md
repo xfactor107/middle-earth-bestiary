@@ -3,6 +3,8 @@
 Prompts for every illustration in the codex, written so the whole book looks like the work of one engraver. They describe each creature rather than naming it, and avoid film and licensed designs (see **Avoid** under each beast).
 
 > **Status (2026-09-25): all 49 illustrations are done** (16 plates, 32 sketches, frontispiece). Keep these prompts for regenerating any image or illustrating new entries.
+>
+> **2026-11-19:** six entries were added with finished WebP artwork and no prompts here: Barrow-wight, Hound of Valinor, Kine of Araw, Mewlips, Crebain and Ravens of Erebor (18 images, now 67 in all). Their files are listed in `backend/prisma/bestiary.ts`; there are no originals in `art-originals/`.
 
 ## How to use
 

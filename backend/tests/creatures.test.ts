@@ -178,6 +178,17 @@ describe("write routes", () => {
       });
     });
 
+    it("accepts a creature from no recorded age", async () => {
+      db.creature.create.mockResolvedValue({ id: 17, ...validCreature, originEra: null });
+      const res = await request(app)
+        .post("/api/creatures")
+        .set("x-api-key", "test-secret")
+        .send({ ...validCreature, originEra: null });
+
+      expect(res.status).toBe(201);
+      expect(db.creature.create.mock.calls[0]![0].data.originEra).toBeNull();
+    });
+
     it("validates the body before writing", async () => {
       const res = await request(app)
         .post("/api/creatures")
